@@ -1,38 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bvfg107sfp4xx"]
+[gd_scene load_steps=6 format=3 uid="uid://bvfg107sfp4xx"]
 
-[ext_resource type="Script" path="res://Scripts/EcosystemManager.gd" id="1_4p41n"]
-[ext_resource type="PackedScene" uid="uid://ds7ywmd4f72ug" path="res://Scenes/Predator.tscn" id="2_bu3gu"]
-[ext_resource type="PackedScene" uid="uid://bgikwvc66amod" path="res://Scenes/Prey.tscn" id="3_0jjn3"]
+[ext_resource type="PackedScene" uid="uid://g7l7d0cxn440" path="res://Scenes/EcosystemManager.tscn" id="1_rktck"]
 [ext_resource type="PackedScene" uid="uid://1n6rp3pfmw1q" path="res://Scenes/Player.tscn" id="3_livb2"]
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_iaftw"]
-vertices = PackedVector3Array(-24.5, 0.5, -24.5, -24.5, 0.5, 24.5, 24.5, 0.5, 24.5, 24.5, 0.5, -24.5)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wq7xt"]
-albedo_color = Color(0.343142, 0.169645, 0.0700111, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_mvuc2"]
-material = SubResource("StandardMaterial3D_wq7xt")
-top_radius = 0.2
-bottom_radius = 0.2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d218b"]
-albedo_color = Color(0.373415, 0.51864, 0.305, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_lwkpo"]
-material = SubResource("StandardMaterial3D_d218b")
-radius = 0.6
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_op2vt"]
-size = Vector3(50, 0.5, 50)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k24k5"]
-albedo_color = Color(0.295848, 0.511305, 0.359491, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_2rotn"]
-material = SubResource("StandardMaterial3D_k24k5")
-size = Vector3(50, 0.5, 50)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vk5pe"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -49,25 +18,7 @@ glow_enabled = true
 
 [node name="Main" type="Node3D"]
 
-[node name="EcosystemManager" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_iaftw")
-script = ExtResource("1_4p41n")
-predator_num = 35
-prey_num = 50
-tree_num = 250
-predator_scene = ExtResource("2_bu3gu")
-prey_scene = ExtResource("3_0jjn3")
-tree_mesh = SubResource("CylinderMesh_mvuc2")
-leaves_mesh = SubResource("SphereMesh_lwkpo")
-
-[node name="Ground" type="StaticBody3D" parent="EcosystemManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
-
-[node name="CollisionShape" type="CollisionShape3D" parent="EcosystemManager/Ground"]
-shape = SubResource("BoxShape3D_op2vt")
-
-[node name="MeshInstance" type="MeshInstance3D" parent="EcosystemManager/Ground"]
-mesh = SubResource("BoxMesh_2rotn")
+[node name="EcosystemManager" parent="." instance=ExtResource("1_rktck")]
 
 [node name="Player" parent="." instance=ExtResource("3_livb2")]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 12, 30)

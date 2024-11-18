@@ -1,15 +1,17 @@
-extends Node3D
+extends CharacterBody3D
 class_name Prey
 
-var velocity : Vector3
+var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-const SPEED = 3.0
+const SPEED : float = 3.0
+
+var lifetime : float = 45.0
+
+var birth_time : float
 
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent
 
 @export var prey : Node3D
-
-var birth_time : float
 
 func _ready():
 	birth_time = Time.get_ticks_msec()
@@ -22,10 +24,13 @@ func nav_server_ready():
 	set_physics_process(true)
 
 func _physics_process(delta):
+	if get_age() > lifetime:
+		queue_free()
+	
 	nav_agent.target_position = get_target_position()
 	
-	#if not is_on_floor():
-		#velocity.y -= gravity * delta
+	if not is_on_floor():
+		velocity.y -= gravity * delta
 	
 	var direction : Vector3
 	
@@ -41,9 +46,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
-	global_position += velocity * delta
-	
-	#move_and_slide()
+	move_and_slide()
 
 func get_target_position() -> Vector3:
 	if prey:

@@ -17,12 +17,10 @@ func _ready():
 func generate_nav():
 	var source_geometry_data : NavigationMeshSourceGeometryData3D = NavigationMeshSourceGeometryData3D.new()
 	
-	NavigationServer3D.parse_source_geometry_data(navigation_mesh, source_geometry_data, self, bake_nav_done)
+	NavigationServer3D.parse_source_geometry_data(navigation_mesh, source_geometry_data, self)
 	NavigationServer3D.bake_from_source_geometry_data(navigation_mesh, source_geometry_data, bake_nav_done)
-	#bake_nav_done()
 
 func bake_nav_done():
-	print("bake nav done")
 	for i in predator_num:
 		var instantiated_scene : Predator = predator_scene.instantiate()
 		instantiated_scene.position = Vector3(randf_range(-24.0, 24.0), 0.0, randf_range(-24.0, 24.0))
@@ -52,7 +50,7 @@ func generate_trees():
 		var tree_collision : CollisionShape3D = CollisionShape3D.new()
 		tree_body.add_child(tree_collision)
 		tree_collision.shape = CylinderShape3D.new()
-		tree_collision.shape.radius = 0.2
+		tree_collision.shape.radius = 0.1
 		tree_collision.shape.height = 2
 		tree_multimesh.multimesh.set_instance_transform(i, Transform3D(Basis(), tree_pos))
 		leaves_multimesh.multimesh.set_instance_transform(i, Transform3D(Basis(), tree_pos + Vector3(0.0, 1.0, 0.0)))
