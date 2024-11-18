@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgikwvc66amod"]
+[gd_scene load_steps=6 format=3 uid="uid://bgikwvc66amod"]
 
 [ext_resource type="Script" path="res://Scripts/Prey.gd" id="1_wcvex"]
 
@@ -14,6 +14,9 @@ height = 1.0
 radius = 0.25
 height = 1.0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_atyq5"]
+radius = 5.0
+
 [node name="Prey" type="CharacterBody3D"]
 script = ExtResource("1_wcvex")
 
@@ -25,6 +28,10 @@ mesh = SubResource("CapsuleMesh_quewn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_fd1nd")
 
+[node name="VisibilityArea" type="Area3D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape3D" parent="VisibilityArea"]
+shape = SubResource("SphereShape3D_atyq5")
+
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
-avoidance_enabled = true
 max_neighbors = 50

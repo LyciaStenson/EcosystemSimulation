@@ -5,11 +5,12 @@ var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 const SPEED : float = 3.0
 
-var lifetime : float = 45.0
+var lifetime : float = 120.0
 
 var birth_time : float
 
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent
+@onready var visibility_area : Area3D = $VisibilityArea
 
 @export var prey : Node3D
 

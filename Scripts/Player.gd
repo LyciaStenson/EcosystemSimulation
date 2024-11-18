@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var speed : float = 10.0
+@export var speed : float = 7.0
 
 @onready var camera = $Camera
 

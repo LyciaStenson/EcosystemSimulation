@@ -3,11 +3,12 @@ class_name Predator
 
 const SPEED : float = 3.0
 
-var lifetime : float = 60.0
+var lifetime : float = 180.0
 
 var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent
+@onready var visibility_area : Area3D = $VisibilityArea
 
 @export var prey : Node3D
 

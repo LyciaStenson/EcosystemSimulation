@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ds7ywmd4f72ug"]
+[gd_scene load_steps=6 format=3 uid="uid://ds7ywmd4f72ug"]
 
 [ext_resource type="Script" path="res://Scripts/Predator.gd" id="1_pjthh"]
 
@@ -14,6 +14,9 @@ height = 1.5
 radius = 0.3
 height = 1.5
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_viinu"]
+radius = 5.0
+
 [node name="Predator" type="CharacterBody3D"]
 script = ExtResource("1_pjthh")
 
@@ -25,6 +28,10 @@ mesh = SubResource("CapsuleMesh_7ik3y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CapsuleShape3D_50c2x")
 
+[node name="VisibilityArea" type="Area3D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape3D" parent="VisibilityArea"]
+shape = SubResource("SphereShape3D_viinu")
+
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
-avoidance_enabled = true
 max_neighbors = 50
