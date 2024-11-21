@@ -27,3 +27,4 @@ shape = SubResource("SphereShape3D_atyq5")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
 max_neighbors = 50
+debug_enabled = true

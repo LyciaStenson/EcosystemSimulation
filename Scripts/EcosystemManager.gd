@@ -17,9 +17,11 @@ var leaves_multimesh : MultiMeshInstance3D
 
 var tree_positions : Array[Vector3]
 
+var spawn_positions : Array[Vector3]
+
 func _ready():
+	generate_noise()
 	generate_trees()
-	
 	generate_nav()
 
 func generate_nav():
@@ -31,18 +33,31 @@ func generate_nav():
 func bake_nav_done():
 	for i in predator_num:
 		var instantiated_scene : Predator = predator_scene.instantiate()
-		instantiated_scene.position = Vector3(randf_range(-24.0, 24.0), 0.0, randf_range(-24.0, 24.0))
+		var spawn_position_index : int = randi_range(0, spawn_positions.size() - 1)
+		instantiated_scene.position = spawn_positions[spawn_position_index]
+		spawn_positions.remove_at(spawn_position_index)
+		#instantiated_scene.position = Vector3(randf_range(-24.0, 24.0), 0.0, randf_range(-24.0, 24.0))
 		add_child(instantiated_scene)
 	
 	for i in prey_num:
 		var instantiated_scene : Prey = prey_scene.instantiate()
-		instantiated_scene.position = Vector3(randf_range(-24.0, 24.0), 0.0, randf_range(-24.0, 24.0))
+		var spawn_position_index : int = randi_range(0, spawn_positions.size() - 1)
+		instantiated_scene.position = spawn_positions[spawn_position_index]
+		spawn_positions.remove_at(spawn_position_index)
+		#instantiated_scene.position = Vector3(randf_range(-24.0, 24.0), 0.0, randf_range(-24.0, 24.0))
 		add_child(instantiated_scene)
 
-func generate_trees():
+func generate_noise():
 	fast_noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	fast_noise.seed = randi()
 	
+	for x in range(-240, 240):
+		for y in range(-240, 240):
+			if fast_noise.get_noise_2d(x, y) < tree_threshold:
+				print(x, ", ", y)
+				spawn_positions.append(Vector3(x / 10.0, 0.0, y / 10.0))
+
+func generate_trees():
 	leaves_multimesh = MultiMeshInstance3D.new()
 	leaves_multimesh.multimesh = MultiMesh.new()
 	leaves_multimesh.multimesh.transform_format = MultiMesh.TRANSFORM_3D
@@ -68,13 +83,5 @@ func generate_trees():
 	add_child(leaves_multimesh)
 
 func add_tree(index : int, tree_pos : Vector3):
-	#var tree_body : StaticBody3D = StaticBody3D.new()
-	#add_child(tree_body)
-	#tree_body.global_position = tree_pos + Vector3(0.0, 1.0, 0.0)
-	#var tree_collision : CollisionShape3D = CollisionShape3D.new()
-	#tree_body.add_child(tree_collision)
-	#tree_collision.shape = CylinderShape3D.new()
-	#tree_collision.shape.radius = 0.1
-	#tree_collision.shape.height = 2
 	tree_multimesh.multimesh.set_instance_transform(index, Transform3D(Basis(), tree_pos))
 	leaves_multimesh.multimesh.set_instance_transform(index, Transform3D(Basis(), tree_pos + Vector3(0.0, 1.0, 0.0)))
