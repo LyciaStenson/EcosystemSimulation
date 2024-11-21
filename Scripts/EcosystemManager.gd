@@ -3,7 +3,7 @@ extends NavigationRegion3D
 @export var predator_num : int
 @export var prey_num : int
 @export var tree_threshold : float
-@export_range(0, 1, 0.01) var tree_probability : float
+@export_range(0, 1, 0.001) var tree_probability : float
 
 @export var predator_scene : PackedScene
 @export var prey_scene : PackedScene
@@ -68,13 +68,13 @@ func generate_trees():
 	add_child(leaves_multimesh)
 
 func add_tree(index : int, tree_pos : Vector3):
-	var tree_body : StaticBody3D = StaticBody3D.new()
-	add_child(tree_body)
-	tree_body.global_position = tree_pos
-	var tree_collision : CollisionShape3D = CollisionShape3D.new()
-	tree_body.add_child(tree_collision)
-	tree_collision.shape = CylinderShape3D.new()
-	tree_collision.shape.radius = 0.1
-	tree_collision.shape.height = 2
+	#var tree_body : StaticBody3D = StaticBody3D.new()
+	#add_child(tree_body)
+	#tree_body.global_position = tree_pos + Vector3(0.0, 1.0, 0.0)
+	#var tree_collision : CollisionShape3D = CollisionShape3D.new()
+	#tree_body.add_child(tree_collision)
+	#tree_collision.shape = CylinderShape3D.new()
+	#tree_collision.shape.radius = 0.1
+	#tree_collision.shape.height = 2
 	tree_multimesh.multimesh.set_instance_transform(index, Transform3D(Basis(), tree_pos))
 	leaves_multimesh.multimesh.set_instance_transform(index, Transform3D(Basis(), tree_pos + Vector3(0.0, 1.0, 0.0)))

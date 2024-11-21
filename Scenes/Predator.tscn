@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ds7ywmd4f72ug"]
+[gd_scene load_steps=5 format=3 uid="uid://ds7ywmd4f72ug"]
 
 [ext_resource type="Script" path="res://Scripts/Predator.gd" id="1_pjthh"]
 
@@ -7,26 +7,17 @@ albedo_color = Color(0.680728, 0.201599, 0.219601, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7ik3y"]
 material = SubResource("StandardMaterial3D_7iswk")
-radius = 0.3
-height = 1.5
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_50c2x"]
-radius = 0.3
-height = 1.5
+height = 1.75
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_viinu"]
 radius = 5.0
 
-[node name="Predator" type="CharacterBody3D"]
+[node name="Predator" type="Node3D"]
 script = ExtResource("1_pjthh")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
 mesh = SubResource("CapsuleMesh_7ik3y")
-
-[node name="CollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-shape = SubResource("CapsuleShape3D_50c2x")
 
 [node name="VisibilityArea" type="Area3D" parent="."]
 
@@ -35,3 +26,4 @@ shape = SubResource("SphereShape3D_viinu")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
 max_neighbors = 50
+debug_enabled = true
