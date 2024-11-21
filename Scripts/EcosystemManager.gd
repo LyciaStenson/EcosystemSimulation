@@ -36,7 +36,6 @@ func bake_nav_done():
 		var spawn_position_index : int = randi_range(0, spawn_positions.size() - 1)
 		instantiated_scene.position = spawn_positions[spawn_position_index]
 		spawn_positions.remove_at(spawn_position_index)
-		#instantiated_scene.position = Vector3(randf_range(-24.0, 24.0), 0.0, randf_range(-24.0, 24.0))
 		add_child(instantiated_scene)
 	
 	for i in prey_num:
@@ -44,7 +43,6 @@ func bake_nav_done():
 		var spawn_position_index : int = randi_range(0, spawn_positions.size() - 1)
 		instantiated_scene.position = spawn_positions[spawn_position_index]
 		spawn_positions.remove_at(spawn_position_index)
-		#instantiated_scene.position = Vector3(randf_range(-24.0, 24.0), 0.0, randf_range(-24.0, 24.0))
 		add_child(instantiated_scene)
 
 func generate_noise():

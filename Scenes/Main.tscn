@@ -1,10 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvfg107sfp4xx"]
+[gd_scene load_steps=8 format=3 uid="uid://bvfg107sfp4xx"]
 
 [ext_resource type="PackedScene" uid="uid://g7l7d0cxn440" path="res://Scenes/EcosystemManager.tscn" id="1_rktck"]
 [ext_resource type="PackedScene" uid="uid://1n6rp3pfmw1q" path="res://Scenes/Player.tscn" id="3_livb2"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_o6cu7"]
-size = Vector3(50, 0.5, 50)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k24k5"]
 albedo_color = Color(0.295848, 0.511305, 0.359491, 1)
@@ -32,11 +29,8 @@ glow_enabled = true
 [node name="EcosystemManager" parent="." instance=ExtResource("1_rktck")]
 prey_num = 50
 
-[node name="Ground" type="StaticBody3D" parent="EcosystemManager"]
+[node name="Ground" type="Node3D" parent="EcosystemManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
-
-[node name="CollisionShape" type="CollisionShape3D" parent="EcosystemManager/Ground"]
-shape = SubResource("BoxShape3D_o6cu7")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="EcosystemManager/Ground"]
 mesh = SubResource("BoxMesh_y10c4")
