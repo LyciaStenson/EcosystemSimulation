@@ -20,7 +20,9 @@ var tree_positions : Array[Vector3]
 var spawn_positions : Array[Vector3]
 
 func _ready():
-	generate_noise()
+	fast_noise.noise_type = FastNoiseLite.TYPE_PERLIN
+	fast_noise.seed = randi()
+	generate_spawn_positions()
 	generate_trees()
 	generate_nav()
 
@@ -45,14 +47,10 @@ func bake_nav_done():
 		spawn_positions.remove_at(spawn_position_index)
 		add_child(instantiated_scene)
 
-func generate_noise():
-	fast_noise.noise_type = FastNoiseLite.TYPE_PERLIN
-	fast_noise.seed = randi()
-	
+func generate_spawn_positions():
 	for x in range(-240, 240):
 		for y in range(-240, 240):
 			if fast_noise.get_noise_2d(x, y) < tree_threshold:
-				print(x, ", ", y)
 				spawn_positions.append(Vector3(x / 10.0, 0.0, y / 10.0))
 
 func generate_trees():

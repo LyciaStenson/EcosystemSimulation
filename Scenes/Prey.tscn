@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgikwvc66amod"]
+[gd_scene load_steps=6 format=3 uid="uid://bgikwvc66amod"]
 
 [ext_resource type="Script" path="res://Scripts/Prey.gd" id="1_wcvex"]
 
@@ -10,15 +10,23 @@ material = SubResource("StandardMaterial3D_by572")
 radius = 0.25
 height = 1.0
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u0yvc"]
+radius = 0.25
+height = 1.0
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_atyq5"]
 radius = 5.0
 
-[node name="Prey" type="Node3D"]
+[node name="Prey" type="CharacterBody3D"]
 script = ExtResource("1_wcvex")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("CapsuleMesh_quewn")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_u0yvc")
 
 [node name="VisibilityArea" type="Area3D" parent="."]
 

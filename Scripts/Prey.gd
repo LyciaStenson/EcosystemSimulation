@@ -1,4 +1,4 @@
-extends Node3D
+extends CharacterBody3D
 class_name Prey
 
 var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -14,7 +14,7 @@ var birth_time : float
 
 @export var prey : Node3D
 
-var velocity : Vector3
+#var velocity : Vector3
 
 func _ready():
 	birth_time = Time.get_ticks_msec()
@@ -46,7 +46,8 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
-	global_position += velocity * delta
+	#global_position += velocity * delta
+	move_and_slide()
 
 func get_target_position() -> Vector3:
 	if prey:

@@ -1,11 +1,11 @@
-extends Node3D
+extends CharacterBody3D
 class_name Predator
 
 const SPEED : float = 3.0
 
 var lifetime : float = 180.0
 
-var velocity : Vector3
+#var velocity : Vector3
 
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent
 @onready var visibility_area : Area3D = $VisibilityArea
@@ -44,7 +44,8 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
-	global_position += velocity * delta
+	#global_position += velocity * delta
+	move_and_slide()
 
 func get_target_position() -> Vector3:
 	if prey:
