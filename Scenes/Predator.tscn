@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ds7ywmd4f72ug"]
+[gd_scene load_steps=7 format=3 uid="uid://ds7ywmd4f72ug"]
 
-[ext_resource type="Script" path="res://Scripts/Agent.gd" id="1_4im0s"]
+[ext_resource type="Script" path="res://Scripts/Predator.gd" id="1_pjthh"]
+[ext_resource type="Script" path="res://Scripts/PredatorBehavior.gd" id="2_d5lvf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7iswk"]
 albedo_color = Color(0.680728, 0.201599, 0.219601, 1)
@@ -16,7 +17,8 @@ height = 1.75
 radius = 5.0
 
 [node name="Predator" type="CharacterBody3D"]
-script = ExtResource("1_4im0s")
+script = ExtResource("1_pjthh")
+speed = 5.0
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
@@ -32,5 +34,10 @@ shape = SubResource("CapsuleShape3D_ig07m")
 shape = SubResource("SphereShape3D_viinu")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
-max_neighbors = 50
 debug_enabled = true
+
+[node name="Behavior" type="Node" parent="."]
+script = ExtResource("2_d5lvf")
+
+[connection signal="body_entered" from="VisibilityArea" to="Behavior" method="visibility_entered"]
+[connection signal="body_exited" from="VisibilityArea" to="Behavior" method="visibility_exited"]

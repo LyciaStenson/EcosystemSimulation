@@ -1,14 +1,14 @@
 extends CharacterBody3D
 class_name Agent
 
-const SPEED : float = 3.0
+@export var speed : float = 3.0
 
 var lifetime : float = 180.0
 
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent
 @onready var visibility_area : Area3D = $VisibilityArea
 
-@export var prey : Node3D
+@onready var behavior : Behavior = $Behavior
 
 var birth_time : float
 
@@ -26,7 +26,7 @@ func _physics_process(delta):
 	if get_age() > lifetime:
 		queue_free()
 	
-	nav_agent.target_position = get_target_position()
+	nav_agent.target_position = behavior.target_position
 	
 	var direction : Vector3
 	
@@ -36,19 +36,13 @@ func _physics_process(delta):
 	direction = global_position.direction_to(nav_agent.get_next_path_position())
 	
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
 	
 	move_and_slide()
-
-func get_target_position() -> Vector3:
-	if prey:
-		return prey.global_position
-	else:
-		return Vector3()
 
 func get_age() -> float:
 	return (Time.get_ticks_msec() - birth_time) * 0.001

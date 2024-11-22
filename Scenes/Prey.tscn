@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgikwvc66amod"]
+[gd_scene load_steps=7 format=3 uid="uid://bgikwvc66amod"]
 
-[ext_resource type="Script" path="res://Scripts/Agent.gd" id="1_7pta4"]
+[ext_resource type="Script" path="res://Scripts/Prey.gd" id="1_wcvex"]
+[ext_resource type="Script" path="res://Scripts/PreyBehavior.gd" id="2_qo2ry"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_by572"]
 albedo_color = Color(0.83642, 0.481453, 0.242139, 1)
@@ -18,7 +19,7 @@ height = 1.0
 radius = 5.0
 
 [node name="Prey" type="CharacterBody3D"]
-script = ExtResource("1_7pta4")
+script = ExtResource("1_wcvex")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -34,5 +35,10 @@ shape = SubResource("CapsuleShape3D_u0yvc")
 shape = SubResource("SphereShape3D_atyq5")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
-max_neighbors = 50
 debug_enabled = true
+
+[node name="Behavior" type="Node" parent="."]
+script = ExtResource("2_qo2ry")
+
+[connection signal="body_entered" from="VisibilityArea" to="Behavior" method="visibility_entered"]
+[connection signal="body_exited" from="VisibilityArea" to="Behavior" method="visibility_exited"]
