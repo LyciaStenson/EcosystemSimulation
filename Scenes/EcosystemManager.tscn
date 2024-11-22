@@ -24,9 +24,6 @@ radius = 0.6
 [node name="EcosystemManager" type="NavigationRegion3D"]
 navigation_mesh = SubResource("NavigationMesh_iaftw")
 script = ExtResource("1_roijb")
-predator_num = 35
-tree_threshold = 0.01
-tree_probability = 0.003
 predator_scene = ExtResource("2_2rcuf")
 prey_scene = ExtResource("3_qsvxw")
 tree_mesh = SubResource("CylinderMesh_mvuc2")

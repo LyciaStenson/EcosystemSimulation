@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgikwvc66amod"]
 
-[ext_resource type="Script" path="res://Scripts/Prey.gd" id="1_wcvex"]
+[ext_resource type="Script" path="res://Scripts/Agent.gd" id="1_7pta4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_by572"]
 albedo_color = Color(0.83642, 0.481453, 0.242139, 1)
@@ -18,7 +18,7 @@ height = 1.0
 radius = 5.0
 
 [node name="Prey" type="CharacterBody3D"]
-script = ExtResource("1_wcvex")
+script = ExtResource("1_7pta4")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

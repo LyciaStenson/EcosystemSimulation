@@ -34,14 +34,14 @@ func generate_nav():
 
 func bake_nav_done():
 	for i in predator_num:
-		var instantiated_scene : Predator = predator_scene.instantiate()
+		var instantiated_scene : Agent = predator_scene.instantiate()
 		var spawn_position_index : int = randi_range(0, spawn_positions.size() - 1)
 		instantiated_scene.position = spawn_positions[spawn_position_index]
 		spawn_positions.remove_at(spawn_position_index)
 		add_child(instantiated_scene)
 	
 	for i in prey_num:
-		var instantiated_scene : Prey = prey_scene.instantiate()
+		var instantiated_scene : Agent = prey_scene.instantiate()
 		var spawn_position_index : int = randi_range(0, spawn_positions.size() - 1)
 		instantiated_scene.position = spawn_positions[spawn_position_index]
 		spawn_positions.remove_at(spawn_position_index)
