@@ -5,8 +5,6 @@ const SPEED : float = 3.0
 
 var lifetime : float = 180.0
 
-#var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
-
 var velocity : Vector3
 
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent
@@ -31,9 +29,6 @@ func _physics_process(delta):
 		queue_free()
 	
 	nav_agent.target_position = get_target_position()
-	
-	#if not is_on_floor():
-		#velocity.y -= gravity * delta
 	
 	var direction : Vector3
 	
