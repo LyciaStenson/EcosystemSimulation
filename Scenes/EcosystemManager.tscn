@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://g7l7d0cxn440"]
+[gd_scene load_steps=11 format=3 uid="uid://g7l7d0cxn440"]
 
 [ext_resource type="Script" path="res://Scripts/EcosystemManager.gd" id="1_roijb"]
 [ext_resource type="PackedScene" uid="uid://ds7ywmd4f72ug" path="res://Scenes/Predator.tscn" id="2_2rcuf"]
@@ -21,6 +21,14 @@ albedo_color = Color(0.373415, 0.51864, 0.305, 1)
 material = SubResource("StandardMaterial3D_d218b")
 radius = 0.6
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_po7vq"]
+albedo_color = Color(0.720698, 0.176335, 0.183902, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_36r6y"]
+material = SubResource("StandardMaterial3D_po7vq")
+radius = 0.1
+height = 0.2
+
 [node name="EcosystemManager" type="NavigationRegion3D"]
 navigation_mesh = SubResource("NavigationMesh_iaftw")
 script = ExtResource("1_roijb")
@@ -28,3 +36,4 @@ predator_scene = ExtResource("2_2rcuf")
 prey_scene = ExtResource("3_qsvxw")
 tree_mesh = SubResource("CylinderMesh_mvuc2")
 leaves_mesh = SubResource("SphereMesh_lwkpo")
+apple_mesh = SubResource("SphereMesh_36r6y")

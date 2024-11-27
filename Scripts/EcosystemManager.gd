@@ -9,6 +9,7 @@ extends NavigationRegion3D
 @export var prey_scene : PackedScene
 @export var tree_mesh : Mesh
 @export var leaves_mesh : Mesh
+@export var apple_mesh : Mesh
 
 @onready var fast_noise : FastNoiseLite = FastNoiseLite.new()
 
