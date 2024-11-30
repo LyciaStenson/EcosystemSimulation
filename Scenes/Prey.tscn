@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bgikwvc66amod"]
 
-[ext_resource type="Script" path="res://Scripts/Prey.gd" id="1_wcvex"]
+[ext_resource type="Script" path="res://Scripts/Agent.gd" id="1_8mcej"]
 [ext_resource type="Script" path="res://Scripts/PreyBehavior.gd" id="2_qo2ry"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_by572"]
@@ -19,7 +19,7 @@ height = 1.0
 radius = 5.0
 
 [node name="Prey" type="CharacterBody3D"]
-script = ExtResource("1_wcvex")
+script = ExtResource("1_8mcej")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

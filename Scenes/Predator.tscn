@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ds7ywmd4f72ug"]
 
-[ext_resource type="Script" path="res://Scripts/Predator.gd" id="1_pjthh"]
+[ext_resource type="Script" path="res://Scripts/Agent.gd" id="1_uk28h"]
 [ext_resource type="Script" path="res://Scripts/PredatorBehavior.gd" id="2_d5lvf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7iswk"]
@@ -17,8 +17,7 @@ height = 1.75
 radius = 5.0
 
 [node name="Predator" type="CharacterBody3D"]
-script = ExtResource("1_pjthh")
-speed = 5.0
+script = ExtResource("1_uk28h")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)

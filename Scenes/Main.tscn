@@ -24,7 +24,7 @@ sky = SubResource("Sky_nted4")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" groups=["Predator"]]
 
 [node name="EcosystemManager" parent="." instance=ExtResource("1_rktck")]
 predator_num = 50
