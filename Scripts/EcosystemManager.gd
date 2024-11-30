@@ -18,7 +18,8 @@ var leaves_multimesh : MultiMeshInstance3D
 
 var tree_positions : Array[Vector3]
 
-var spawn_positions : Array[Vector3]
+var high_positions : Array[Vector3]
+var low_positions : Array[Vector3]
 
 func _ready():
 	fast_noise.noise_type = FastNoiseLite.TYPE_PERLIN
@@ -31,28 +32,34 @@ func generate_nav():
 	var source_geometry_data : NavigationMeshSourceGeometryData3D = NavigationMeshSourceGeometryData3D.new()
 	
 	NavigationServer3D.parse_source_geometry_data(navigation_mesh, source_geometry_data, self)
-	NavigationServer3D.bake_from_source_geometry_data(navigation_mesh, source_geometry_data, bake_nav_done)
+	NavigationServer3D.bake_from_source_geometry_data(navigation_mesh, source_geometry_data, spawn_agents)
 
-func bake_nav_done():
+func spawn_agents():
 	for i in predator_num:
 		var instantiated_scene : Agent = predator_scene.instantiate()
-		var spawn_position_index : int = randi_range(0, spawn_positions.size() - 1)
-		instantiated_scene.position = spawn_positions[spawn_position_index]
-		spawn_positions.remove_at(spawn_position_index)
+		var position_index : int = randi_range(0, low_positions.size() - 1)
+		instantiated_scene.position = low_positions[position_index]
+		low_positions.remove_at(position_index)
 		add_child(instantiated_scene)
 	
 	for i in prey_num:
 		var instantiated_scene : Agent = prey_scene.instantiate()
-		var spawn_position_index : int = randi_range(0, spawn_positions.size() - 1)
-		instantiated_scene.position = spawn_positions[spawn_position_index]
-		spawn_positions.remove_at(spawn_position_index)
+		var position_index : int = randi_range(0, low_positions.size() - 1)
+		instantiated_scene.position = low_positions[position_index]
+		low_positions.remove_at(position_index)
 		add_child(instantiated_scene)
 
 func generate_spawn_positions():
 	for x in range(-240, 240):
 		for y in range(-240, 240):
-			if fast_noise.get_noise_2d(x, y) < tree_threshold:
-				spawn_positions.append(Vector3(x / 10.0, 0.0, y / 10.0))
+			var noise : float = fast_noise.get_noise_2d(x, y)
+			if noise > tree_threshold:
+				high_positions.append(Vector3(x / 10.0, 0.0, y / 10.0))
+			elif noise < tree_threshold:
+				low_positions.append(Vector3(x / 10.0, 0.0, y / 10.0))
+
+func generate_water():
+	pass
 
 func generate_trees():
 	leaves_multimesh = MultiMeshInstance3D.new()

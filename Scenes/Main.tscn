@@ -27,10 +27,9 @@ glow_enabled = true
 [node name="Main" type="Node3D" groups=["Predator"]]
 
 [node name="EcosystemManager" parent="." instance=ExtResource("1_rktck")]
-predator_num = 50
 prey_num = 50
-tree_threshold = 0.025
-tree_probability = 0.003
+tree_threshold = 0.15
+tree_probability = 0.03
 
 [node name="Ground" type="Node3D" parent="EcosystemManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)

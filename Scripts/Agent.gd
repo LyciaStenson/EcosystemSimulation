@@ -22,7 +22,7 @@ func nav_server_ready():
 	await get_tree().physics_frame
 	set_physics_process(true)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if get_age() > lifetime:
 		queue_free()
 	
@@ -42,7 +42,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	
-	move_and_slide()
+	#move_and_slide()
 
 func get_age() -> float:
 	return (Time.get_ticks_msec() - birth_time) * 0.001
