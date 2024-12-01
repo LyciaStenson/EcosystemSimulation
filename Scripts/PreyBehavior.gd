@@ -8,7 +8,7 @@ func _ready():
 func _process(_delta):
 	if !predators.is_empty():
 		var predator_dir : Vector3 = (agent.global_position - predators[0].global_position).normalized()
-		target_position = agent.global_position + predator_dir
+		target_position = agent.global_position + predator_dir * 100
 
 func visibility_entered(body : Node3D):
 	if body.is_in_group("Predator"):
@@ -17,3 +17,5 @@ func visibility_entered(body : Node3D):
 func visibility_exited(body : Node3D):
 	if predators.has(body):
 		predators.erase(body)
+	if predators.is_empty():
+		target_position = Vector3()

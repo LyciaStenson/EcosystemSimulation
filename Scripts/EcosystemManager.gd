@@ -58,8 +58,10 @@ func generate_spawn_positions():
 			var noise : float = fast_noise.get_noise_2d(x, y)
 			if noise > noise_threshold:
 				high_positions.append(Vector3(x / 10.0, 0.0, y / 10.0))
-			elif noise < noise_threshold:
+			elif noise < noise_threshold - 0.1: # -0.1 creates a border where agents won't spawn too close to trees
 				low_positions.append(Vector3(x / 10.0, 0.0, y / 10.0))
+	if low_positions.is_empty():
+		push_error("Noise Threshold too low")
 
 func generate_water():
 	pass

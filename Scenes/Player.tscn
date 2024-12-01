@@ -1,15 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://1n6rp3pfmw1q"]
+[gd_scene load_steps=2 format=3 uid="uid://1n6rp3pfmw1q"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_m4e1o"]
-[ext_resource type="Script" path="res://Scripts/FPSLabel.gd" id="2_sn7b0"]
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_m4e1o")
 
 [node name="Camera" type="Camera3D" parent="."]
-
-[node name="FPSLabel" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "fps"
-script = ExtResource("2_sn7b0")

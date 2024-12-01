@@ -16,3 +16,9 @@ func visibility_entered(body : Node3D):
 func visibility_exited(body : Node3D):
 	if targets.has(body):
 		targets.erase(body)
+		if targets.is_empty():
+			target_position = Vector3()
+
+func attack_entered(body : Node3D):
+	if body.is_in_group("Prey"):
+		body.queue_free()

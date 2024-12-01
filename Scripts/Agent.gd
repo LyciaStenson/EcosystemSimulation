@@ -3,7 +3,7 @@ class_name Agent
 
 @export var speed : float = 3.0
 
-var lifetime : float = 180.0
+@export var lifetime : float = 120.0
 
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent
 @onready var visibility_area : Area3D = $VisibilityArea
@@ -42,7 +42,7 @@ func _physics_process(_delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	
-	#move_and_slide()
+	move_and_slide()
 
 func get_age() -> float:
 	return (Time.get_ticks_msec() - birth_time) * 0.001
