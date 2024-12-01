@@ -2,6 +2,8 @@ extends Behavior
 
 var predators : Array[Node3D]
 
+@onready var energy_bar : MeshInstance3D = $"../EnergyBar"
+
 func _ready():
 	get_parent().add_to_group("Prey")
 
