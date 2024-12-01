@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgikwvc66amod"]
+[gd_scene load_steps=10 format=3 uid="uid://bgikwvc66amod"]
 
 [ext_resource type="Script" path="res://Scripts/Agent.gd" id="1_8mcej"]
 [ext_resource type="Script" path="res://Scripts/PreyBehavior.gd" id="2_qo2ry"]
+[ext_resource type="Shader" path="res://Shaders/ProgressBar.gdshader" id="3_c3dtd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_by572"]
 albedo_color = Color(0.83642, 0.481453, 0.242139, 1)
@@ -10,6 +11,15 @@ albedo_color = Color(0.83642, 0.481453, 0.242139, 1)
 material = SubResource("StandardMaterial3D_by572")
 radius = 0.25
 height = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_84cti"]
+render_priority = 0
+shader = ExtResource("3_c3dtd")
+shader_parameter/value = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_pigep"]
+material = SubResource("ShaderMaterial_84cti")
+size = Vector2(0.8, 0.1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u0yvc"]
 radius = 0.25
@@ -24,6 +34,10 @@ script = ExtResource("1_8mcej")
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("CapsuleMesh_quewn")
+
+[node name="EnergyBar" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+mesh = SubResource("QuadMesh_pigep")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

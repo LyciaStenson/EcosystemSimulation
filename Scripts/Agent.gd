@@ -10,6 +10,8 @@ class_name Agent
 
 @onready var behavior : Behavior = $Behavior
 
+@onready var energy_bar : MeshInstance3D = $EnergyBar
+
 var birth_time : float
 
 func _ready():
