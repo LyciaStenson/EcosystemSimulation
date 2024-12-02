@@ -5,7 +5,7 @@ var predators : Array[Node3D]
 @onready var energy_bar : MeshInstance3D = $"../EnergyBar"
 
 func _ready():
-	get_parent().add_to_group("Prey")
+	agent.add_to_group("Prey")
 
 func _process(_delta):
 	if !predators.is_empty():
@@ -19,5 +19,5 @@ func visibility_entered(body : Node3D):
 func visibility_exited(body : Node3D):
 	if predators.has(body):
 		predators.erase(body)
-	if predators.is_empty():
-		agent.nav_agent.target_position = Vector3()
+	#if predators.is_empty():
+		#agent.nav_agent.target_position = Vector3()

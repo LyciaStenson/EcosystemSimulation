@@ -3,7 +3,7 @@ extends Behavior
 var targets : Array[Node3D]
 
 func _ready():
-	get_parent().add_to_group("Predator")
+	agent.add_to_group("Predator")
 
 func _process(_delta):
 	if !targets.is_empty():
@@ -16,8 +16,8 @@ func visibility_entered(body : Node3D):
 func visibility_exited(body : Node3D):
 	if targets.has(body):
 		targets.erase(body)
-		if targets.is_empty():
-			agent.nav_agent.target_position = Vector3()
+		#if targets.is_empty():
+			#agent.nav_agent.target_position = Vector3()
 
 func attack_entered(body : Node3D):
 	if body.is_in_group("Prey"):

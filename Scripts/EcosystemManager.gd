@@ -2,14 +2,14 @@ extends NavigationRegion3D
 
 @export var predator_num : int
 @export var prey_num : int
+@export var water_num : int
 @export var tree_num : int
-#@export var tree_threshold : float
-#@export_range(0, 1, 0.001) var tree_probability : float
 
 @export var noise_threshold : float
 
 @export var predator_scene : PackedScene
 @export var prey_scene : PackedScene
+@export var water_scene : PackedScene
 @export var tree_mesh : Mesh
 @export var leaves_mesh : Mesh
 @export var apple_mesh : Mesh
@@ -19,8 +19,6 @@ extends NavigationRegion3D
 var tree_multimesh : MultiMeshInstance3D
 var leaves_multimesh : MultiMeshInstance3D
 
-#var tree_positions : Array[Vector3]
-
 var high_positions : Array[Vector3]
 var low_positions : Array[Vector3]
 
@@ -28,6 +26,7 @@ func _ready():
 	fast_noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	fast_noise.seed = randi()
 	generate_spawn_positions()
+	generate_water()
 	generate_trees()
 	generate_nav()
 
@@ -64,7 +63,19 @@ func generate_spawn_positions():
 		push_error("Noise Threshold too low")
 
 func generate_water():
-	pass
+	for i in water_num:
+		var instantiated_scene : StaticBody3D = water_scene.instantiate()
+		var position_index : int = randi_range(0, low_positions.size() - 1)
+		instantiated_scene.position = low_positions[position_index]
+		low_positions.remove_at(position_index)
+		add_child(instantiated_scene)
+		var space_state : PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+		for pos in low_positions:
+			var query := PhysicsPointQueryParameters3D.new()
+			query.set_position(pos)
+			var result = space_state.intersect_point(query)
+			if result:
+				print("Result")
 
 func generate_trees():
 	leaves_multimesh = MultiMeshInstance3D.new()
@@ -80,8 +91,8 @@ func generate_trees():
 	leaves_multimesh.multimesh.instance_count = tree_num
 	
 	for i in tree_num:
-		var position_index : int = randi_range(0, low_positions.size() - 1)
-		add_tree(i, low_positions[position_index])
+		var position_index : int = randi_range(0, high_positions.size() - 1)
+		add_tree(i, high_positions[position_index])
 	
 	add_child(tree_multimesh)
 	add_child(leaves_multimesh)

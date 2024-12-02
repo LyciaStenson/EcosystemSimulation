@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvfg107sfp4xx"]
+[gd_scene load_steps=10 format=3 uid="uid://bvfg107sfp4xx"]
 
 [ext_resource type="PackedScene" uid="uid://g7l7d0cxn440" path="res://Scenes/EcosystemManager.tscn" id="1_rktck"]
+[ext_resource type="PackedScene" uid="uid://dfftdtmflevi1" path="res://Scenes/Water.tscn" id="2_4r1ub"]
 [ext_resource type="Script" path="res://Scripts/FPSLabel.gd" id="3_ckufk"]
 [ext_resource type="PackedScene" uid="uid://1n6rp3pfmw1q" path="res://Scenes/Player.tscn" id="3_livb2"]
 
@@ -30,8 +31,10 @@ glow_enabled = true
 [node name="EcosystemManager" parent="." instance=ExtResource("1_rktck")]
 predator_num = 3
 prey_num = 100
+water_num = 3
 tree_num = 250
-noise_threshold = 0.05
+noise_threshold = 0.1
+water_scene = ExtResource("2_4r1ub")
 
 [node name="Ground" type="Node3D" parent="EcosystemManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
