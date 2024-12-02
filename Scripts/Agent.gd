@@ -26,7 +26,7 @@ func _physics_process(_delta):
 	if get_age() > lifetime:
 		queue_free()
 	
-	nav_agent.target_position = behavior.target_position
+	#nav_agent.target_position = behavior.target_position
 	
 	var direction : Vector3
 	

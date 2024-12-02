@@ -7,7 +7,7 @@ func _ready():
 
 func _process(_delta):
 	if !targets.is_empty():
-		target_position = targets[0].global_position
+		agent.nav_agent.target_position = targets[0].global_position
 
 func visibility_entered(body : Node3D):
 	if body.is_in_group("Prey"):
@@ -17,7 +17,7 @@ func visibility_exited(body : Node3D):
 	if targets.has(body):
 		targets.erase(body)
 		if targets.is_empty():
-			target_position = Vector3()
+			agent.nav_agent.target_position = Vector3()
 
 func attack_entered(body : Node3D):
 	if body.is_in_group("Prey"):
