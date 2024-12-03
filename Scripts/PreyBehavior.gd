@@ -4,6 +4,8 @@ var predators : Array[Node3D]
 
 @onready var energy_bar : MeshInstance3D = $"../EnergyBar"
 
+#@export var danger_curve : Curve
+
 func _ready():
 	agent.add_to_group("Prey")
 
