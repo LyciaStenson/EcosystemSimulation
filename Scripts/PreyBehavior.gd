@@ -2,7 +2,7 @@ extends Behavior
 
 var predators : Array[Node3D]
 
-@onready var energy_bar : MeshInstance3D = $"../EnergyBar"
+@onready var hydration_bar : MeshInstance3D = $"../HydrationBar"
 
 #@export var danger_curve : Curve
 
@@ -10,6 +10,10 @@ var wander_target_timer : float
 var wander_target_time : float
 
 var wander_target : Vector3
+
+var hydration : float = 1.0
+var dehydration_rate : float = 0.05
+@onready var hydration_bar_shader := hydration_bar.get_active_material(0) as ShaderMaterial
 
 enum Action { WANDER, FIND_WATER, FLEE }
 
@@ -24,6 +28,12 @@ func _ready():
 func _process(delta : float):
 	current_action = determine_action()
 	perform_action(delta)
+	
+	hydration -= dehydration_rate * delta
+	if hydration <= 0.0:
+		agent.queue_free()
+	hydration = clampf(hydration, 0.0, 1.0)
+	hydration_bar_shader.set_shader_parameter("value", normalize_to_bar(hydration))
 
 func visibility_entered(body : Node3D):
 	if body.is_in_group("Predator"):
@@ -32,8 +42,6 @@ func visibility_entered(body : Node3D):
 func visibility_exited(body : Node3D):
 	if predators.has(body):
 		predators.erase(body)
-	#if predators.is_empty():
-		#agent.nav_agent.target_position = Vector3()
 
 func determine_action() -> Action:
 	if !predators.is_empty():
@@ -49,6 +57,11 @@ func perform_action(delta : float):
 				wander_target = Vector3(randf_range(24.0, -24.0), 0.0, randf_range(24.0, -24.0))
 				agent.nav_agent.target_position = wander_target
 				wander_target_timer = 0.0
+		Action.FIND_WATER:
+			print("FIND_WATER")
 		Action.FLEE:
 			var predator_dir : Vector3 = (agent.global_position - predators[0].global_position).normalized()
 			agent.nav_agent.target_position = agent.global_position + predator_dir * 100
+
+func normalize_to_bar(value : float) -> float:
+	return (value - 0.5) * 0.8

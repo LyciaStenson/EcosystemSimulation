@@ -12,13 +12,13 @@ material = SubResource("StandardMaterial3D_by572")
 radius = 0.25
 height = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_84cti"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lh8r0"]
 render_priority = 0
 shader = ExtResource("3_c3dtd")
-shader_parameter/value = 0.0
+shader_parameter/value = null
 
 [sub_resource type="QuadMesh" id="QuadMesh_pigep"]
-material = SubResource("ShaderMaterial_84cti")
+material = SubResource("ShaderMaterial_lh8r0")
 size = Vector2(0.8, 0.1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u0yvc"]
@@ -35,8 +35,9 @@ script = ExtResource("1_8mcej")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("CapsuleMesh_quewn")
 
-[node name="EnergyBar" type="MeshInstance3D" parent="."]
+[node name="HydrationBar" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+cast_shadow = 0
 mesh = SubResource("QuadMesh_pigep")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
