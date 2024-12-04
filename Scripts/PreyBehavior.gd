@@ -7,7 +7,7 @@ var predators : Array[Node3D]
 #@export var danger_curve : Curve
 
 var wander_target_timer : float
-var wander_target_time : float = 5.0
+var wander_target_time : float
 
 var wander_target : Vector3
 
@@ -18,6 +18,7 @@ var current_action : Action
 func _ready():
 	agent.add_to_group("Prey")
 	
+	wander_target_time = randf_range(4.5, 5.5)
 	wander_target_timer = wander_target_time # Initialise time to timer so wander dir runs the first time
 
 func _process(delta : float):
