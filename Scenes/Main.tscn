@@ -29,9 +29,9 @@ glow_enabled = true
 [node name="Main" type="Node3D" groups=["Predator"]]
 
 [node name="EcosystemManager" parent="." instance=ExtResource("1_rktck")]
-predator_num = 3
+predator_num = 10
 prey_num = 100
-water_num = 3
+water_num = 5
 tree_num = 250
 noise_threshold = 0.1
 water_scene = ExtResource("2_4r1ub")

@@ -7,7 +7,14 @@ func _ready():
 
 func _process(_delta):
 	if !targets.is_empty():
-		agent.nav_agent.target_position = targets[0].global_position
+		var closest_dist_sqrd : float = INF
+		var closest_dist_pos : Vector3 = Vector3.ZERO
+		for target in targets:
+			var target_dist_sqrd : float = agent.global_position.distance_squared_to(target.global_position)
+			if target_dist_sqrd < closest_dist_sqrd:
+				closest_dist_sqrd = target_dist_sqrd
+				closest_dist_pos = target.global_position
+		agent.nav_agent.target_position = closest_dist_pos
 
 func visibility_entered(body : Node3D):
 	if body.is_in_group("Prey"):
