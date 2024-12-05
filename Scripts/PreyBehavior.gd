@@ -9,7 +9,7 @@ var predators : Array[Node3D]
 var wander_target_timer : float
 var wander_target_time : float
 
-var wander_target : Vector3
+#var wander_target : Vector3
 
 var hydration : float = 1.0
 var dehydration_rate : float = 0.05
@@ -54,8 +54,9 @@ func perform_action(delta : float):
 		Action.WANDER:
 			wander_target_timer += delta
 			if wander_target_timer >= wander_target_time:
-				wander_target = Vector3(randf_range(24.0, -24.0), 0.0, randf_range(24.0, -24.0))
-				agent.nav_agent.target_position = wander_target
+				var wander_target := Vector3(randf_range(24.0, -24.0), 0.0, randf_range(24.0, -24.0))
+				var wander_dir := agent.global_position.direction_to(wander_target)
+				agent.nav_agent.target_position = wander_dir * 100.0
 				wander_target_timer = 0.0
 		Action.FIND_WATER:
 			print("FIND_WATER")
