@@ -1,11 +1,17 @@
 #ifndef ECOSYSTEM_MANAGER_H
 #define ECOSYSTEM_MANAGER_H
 
-#include <godot_cpp/classes/navigation_region3d.hpp>
+#include <godot_cpp/classes/sprite2d.hpp>
 
 namespace godot {
 
-class EcosystemManager : public NavigationRegion3D {
+class EcosystemManager : public Sprite2D
+{
+    GDCLASS(EcosystemManager, Sprite2D)
+
+private:
+    double test_var;
+
 protected:
     static void _bind_methods();
 
