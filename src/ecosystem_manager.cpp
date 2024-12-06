@@ -5,7 +5,7 @@ using namespace godot;
 
 void EcosystemManager::_bind_methods()
 {
-    
+
 }
 
 EcosystemManager::EcosystemManager()

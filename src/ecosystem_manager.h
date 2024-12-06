@@ -3,24 +3,25 @@
 
 #include <godot_cpp/classes/sprite2d.hpp>
 
-namespace godot {
-
-class EcosystemManager : public Sprite2D
+namespace godot
 {
-    GDCLASS(EcosystemManager, Sprite2D)
 
-private:
-    double test_var;
+	class EcosystemManager : public Sprite2D
+	{
+		GDCLASS(EcosystemManager, Sprite2D)
 
-protected:
-    static void _bind_methods();
+	private:
+		double test_var;
 
-public:
-    EcosystemManager();
-    ~EcosystemManager();
-    
-    void _process(double delta) override;
-};
+	protected:
+		static void _bind_methods();
+
+	public:
+		EcosystemManager();
+		~EcosystemManager();
+
+		void _process(double delta) override;
+	};
 
 }
 
