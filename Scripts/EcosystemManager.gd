@@ -7,6 +7,8 @@ extends NavigationRegion3D
 
 @export var noise_threshold : float
 
+@export var predatorLine : LineGraph
+
 @export var predator_scene : PackedScene
 @export var prey_scene : PackedScene
 @export var water_scene : PackedScene
@@ -29,6 +31,10 @@ func _ready():
 	generate_water()
 	generate_trees()
 	generate_nav()
+
+func _process(_delta):
+	var points : Array[Vector2] = [Vector2(0.0, 0.0), Vector2(100.0, 100.0), Vector2(300.0, 200.0), Vector2(500.0, 90.0)]
+	predatorLine.points = points
 
 func generate_nav():
 	var source_geometry_data : NavigationMeshSourceGeometryData3D = NavigationMeshSourceGeometryData3D.new()

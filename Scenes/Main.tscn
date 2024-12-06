@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvfg107sfp4xx"]
+[gd_scene load_steps=11 format=3 uid="uid://bvfg107sfp4xx"]
 
 [ext_resource type="PackedScene" uid="uid://g7l7d0cxn440" path="res://Scenes/EcosystemManager.tscn" id="1_rktck"]
 [ext_resource type="PackedScene" uid="uid://dfftdtmflevi1" path="res://Scenes/Water.tscn" id="2_4r1ub"]
 [ext_resource type="Script" path="res://Scripts/FPSLabel.gd" id="3_ckufk"]
 [ext_resource type="PackedScene" uid="uid://1n6rp3pfmw1q" path="res://Scenes/Player.tscn" id="3_livb2"]
+[ext_resource type="Script" path="res://Scripts/LineGraph.gd" id="5_e52yq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k24k5"]
 albedo_color = Color(0.295848, 0.511305, 0.359491, 1)
@@ -28,12 +29,13 @@ glow_enabled = true
 
 [node name="Main" type="Node3D" groups=["Predator"]]
 
-[node name="EcosystemManager" parent="." instance=ExtResource("1_rktck")]
+[node name="EcosystemManager" parent="." node_paths=PackedStringArray("predatorLine") instance=ExtResource("1_rktck")]
 predator_num = 10
 prey_num = 100
 water_num = 5
 tree_num = 250
 noise_threshold = 0.1
+predatorLine = NodePath("../GUI/PredatorLine")
 water_scene = ExtResource("2_4r1ub")
 
 [node name="Ground" type="Node3D" parent="EcosystemManager"]
@@ -72,3 +74,8 @@ grow_horizontal = 0
 text = "fps"
 horizontal_alignment = 2
 script = ExtResource("3_ckufk")
+
+[node name="PredatorLine" type="Line2D" parent="GUI"]
+width = 3.0
+default_color = Color(0.835294, 0.482353, 0.243137, 1)
+script = ExtResource("5_e52yq")
