@@ -33,6 +33,6 @@ extern "C"
 
             init_obj.register_initializer(initialize_example_module);
             init_obj.register_terminator(uninitialize_example_module);
-            init_obj.set_minimum_library_unitialization_level(MODULE_INITIALIZATION_LEVEL_SCENE);
+            init_obj.set_minimum_library_initialization_level(MODULE_INITIALIZATION_LEVEL_SCENE);
         }
 }
