@@ -2,6 +2,8 @@ shader_type spatial;
 render_mode cull_disabled;
 render_mode unshaded;
 
+uniform vec3 color : source_color;
+
 uniform float value;
 
 varying vec3 pos;
@@ -13,7 +15,9 @@ void vertex() {
 }
 
 void fragment() {
-	if (pos.x > value) {
+	bool isEdge = (pos.x < -0.39) || (pos.x > 0.39) || (pos.y > 0.04) || (pos.y < -0.04);
+	if (!isEdge && (pos.x > value)) {
 		discard;
 	}
+	ALBEDO = color;
 }

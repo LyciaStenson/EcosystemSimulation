@@ -1,0 +1,2 @@
+extends GoapAgent
+class_name PredatorAgent

@@ -1,10 +1,25 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvfg107sfp4xx"]
+[gd_scene load_steps=16 format=3 uid="uid://dn5sjdmainloi"]
 
-[ext_resource type="PackedScene" uid="uid://g7l7d0cxn440" path="res://Scenes/EcosystemManager.tscn" id="1_rktck"]
-[ext_resource type="PackedScene" uid="uid://dfftdtmflevi1" path="res://Scenes/Water.tscn" id="2_4r1ub"]
-[ext_resource type="Script" path="res://Scripts/FPSLabel.gd" id="3_ckufk"]
-[ext_resource type="PackedScene" uid="uid://1n6rp3pfmw1q" path="res://Scenes/Player.tscn" id="3_livb2"]
-[ext_resource type="Script" path="res://Scripts/LineGraph.gd" id="5_e52yq"]
+[ext_resource type="PackedScene" uid="uid://g7l7d0cxn440" path="res://Scenes/EcosystemManager.tscn" id="1_inw6k"]
+[ext_resource type="PackedScene" uid="uid://1n6rp3pfmw1q" path="res://Scenes/Player.tscn" id="2_3ohw1"]
+[ext_resource type="PackedScene" uid="uid://b3kuxbq4etbca" path="res://Scenes/Predator.tscn" id="2_ip68y"]
+[ext_resource type="Script" path="res://Scripts/FPSLabel.gd" id="3_ja2bo"]
+[ext_resource type="PackedScene" uid="uid://ceyg4khiolqd2" path="res://Scenes/Prey.tscn" id="3_ufxvl"]
+[ext_resource type="PackedScene" uid="uid://dfftdtmflevi1" path="res://Scenes/Water.tscn" id="4_gtkrg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwok4"]
+albedo_color = Color(0.346986, 0.148938, 0.0944176, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5jufl"]
+material = SubResource("StandardMaterial3D_wwok4")
+top_radius = 0.1
+bottom_radius = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8h6nf"]
+albedo_color = Color(0.25454, 0.449336, 0.224035, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_7is5k"]
+material = SubResource("StandardMaterial3D_8h6nf")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k24k5"]
 albedo_color = Color(0.295848, 0.511305, 0.359491, 1)
@@ -29,14 +44,16 @@ glow_enabled = true
 
 [node name="Main" type="Node3D" groups=["Predator"]]
 
-[node name="EcosystemManager" parent="." node_paths=PackedStringArray("predatorLine") instance=ExtResource("1_rktck")]
+[node name="EcosystemManager" parent="." instance=ExtResource("1_inw6k")]
 predator_num = 10
+predator_scene = ExtResource("2_ip68y")
 prey_num = 100
-water_num = 5
-tree_num = 250
-noise_threshold = 0.1
-predatorLine = NodePath("../GUI/PredatorLine")
-water_scene = ExtResource("2_4r1ub")
+prey_scene = ExtResource("3_ufxvl")
+water_num = 10
+tree_num = 500
+water_scene = ExtResource("4_gtkrg")
+tree_mesh = SubResource("CylinderMesh_5jufl")
+leaves_mesh = SubResource("SphereMesh_7is5k")
 
 [node name="Ground" type="Node3D" parent="EcosystemManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
@@ -44,7 +61,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 [node name="MeshInstance" type="MeshInstance3D" parent="EcosystemManager/Ground"]
 mesh = SubResource("BoxMesh_y10c4")
 
-[node name="Player" parent="." instance=ExtResource("3_livb2")]
+[node name="Player" parent="." instance=ExtResource("2_3ohw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 30)
 speed = 10.0
 
@@ -73,9 +90,4 @@ offset_bottom = 23.0
 grow_horizontal = 0
 text = "fps"
 horizontal_alignment = 2
-script = ExtResource("3_ckufk")
-
-[node name="PredatorLine" type="Line2D" parent="GUI"]
-width = 3.0
-default_color = Color(0.835294, 0.482353, 0.243137, 1)
-script = ExtResource("5_e52yq")
+script = ExtResource("3_ja2bo")

@@ -3,7 +3,7 @@ class_name UtilityAgent
 
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent
 
-@onready var sensor : UtilitySensor = $UtilitySensor
+#@onready var sensor : UtilitySensor = $UtilitySensor
 
 var birth_time : float
 

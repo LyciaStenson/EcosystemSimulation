@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgikwvc66amod"]
+[gd_scene load_steps=9 format=3 uid="uid://ceyg4khiolqd2"]
 
-[ext_resource type="Script" path="res://Scripts/Agent.gd" id="1_8mcej"]
-[ext_resource type="Script" path="res://Scripts/PreyBehavior.gd" id="2_qo2ry"]
+[ext_resource type="Script" path="res://Scripts/PreyAgent.gd" id="1_ddr70"]
 [ext_resource type="Shader" path="res://Shaders/ProgressBar.gdshader" id="3_c3dtd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_by572"]
@@ -15,7 +14,8 @@ height = 1.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lh8r0"]
 render_priority = 0
 shader = ExtResource("3_c3dtd")
-shader_parameter/value = null
+shader_parameter/color = Color(0.34119, 0.630675, 0.792411, 1)
+shader_parameter/value = 0.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_pigep"]
 material = SubResource("ShaderMaterial_lh8r0")
@@ -29,7 +29,7 @@ height = 1.0
 radius = 5.0
 
 [node name="Prey" type="CharacterBody3D"]
-script = ExtResource("1_8mcej")
+script = ExtResource("1_ddr70")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -44,16 +44,10 @@ mesh = SubResource("QuadMesh_pigep")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_u0yvc")
 
-[node name="VisibilityArea" type="Area3D" parent="."]
+[node name="SightArea" type="Area3D" parent="."]
 
-[node name="CollisionShape" type="CollisionShape3D" parent="VisibilityArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="SightArea"]
 shape = SubResource("SphereShape3D_atyq5")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
 debug_enabled = true
-
-[node name="Behavior" type="Node" parent="."]
-script = ExtResource("2_qo2ry")
-
-[connection signal="body_entered" from="VisibilityArea" to="Behavior" method="visibility_entered"]
-[connection signal="body_exited" from="VisibilityArea" to="Behavior" method="visibility_exited"]

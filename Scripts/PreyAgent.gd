@@ -1,0 +1,2 @@
+extends UtilityAgent
+class_name PreyAgent

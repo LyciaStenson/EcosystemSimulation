@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ds7ywmd4f72ug"]
+[gd_scene load_steps=7 format=3 uid="uid://b3kuxbq4etbca"]
 
-[ext_resource type="Script" path="res://Scripts/Agent.gd" id="1_uk28h"]
-[ext_resource type="Script" path="res://Scripts/PredatorBehavior.gd" id="2_d5lvf"]
+[ext_resource type="Script" path="res://Scripts/PredatorAgent.gd" id="1_5v2o7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7iswk"]
 albedo_color = Color(0.680728, 0.201599, 0.219601, 1)
@@ -20,9 +19,7 @@ radius = 10.0
 radius = 0.85
 
 [node name="Predator" type="CharacterBody3D"]
-script = ExtResource("1_uk28h")
-speed = 4.5
-lifetime = 180.0
+script = ExtResource("1_5v2o7")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
@@ -32,9 +29,9 @@ mesh = SubResource("CapsuleMesh_7ik3y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
 shape = SubResource("CapsuleShape3D_ig07m")
 
-[node name="VisibilityArea" type="Area3D" parent="."]
+[node name="SightArea" type="Area3D" parent="."]
 
-[node name="CollisionShape" type="CollisionShape3D" parent="VisibilityArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="SightArea"]
 shape = SubResource("SphereShape3D_viinu")
 
 [node name="AttackArea" type="Area3D" parent="."]
@@ -45,10 +42,3 @@ shape = SubResource("SphereShape3D_70lt1")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
 debug_enabled = true
-
-[node name="Behavior" type="Node" parent="."]
-script = ExtResource("2_d5lvf")
-
-[connection signal="body_entered" from="VisibilityArea" to="Behavior" method="visibility_entered"]
-[connection signal="body_exited" from="VisibilityArea" to="Behavior" method="visibility_exited"]
-[connection signal="body_entered" from="AttackArea" to="Behavior" method="attack_entered"]
