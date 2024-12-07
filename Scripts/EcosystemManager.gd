@@ -69,19 +69,18 @@ func generate_spawn_positions():
 		push_error("Noise Threshold too low")
 
 func generate_water():
-	var space_state : PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 	for i in water_num:
 		var instantiated_scene : StaticBody3D = water_scene.instantiate()
 		var position_index : int = randi_range(0, low_positions.size() - 1)
-		instantiated_scene.position = low_positions[position_index]
+		instantiated_scene.global_position = low_positions[position_index]
 		low_positions.remove_at(position_index)
 		add_child(instantiated_scene)
+		var new_low_positions : Array[Vector3]
 		for pos in low_positions:
-			var query := PhysicsPointQueryParameters3D.new()
-			query.set_position(pos)
-			var result = space_state.intersect_point(query)
-			if result:
-				print("Result")
+			var dist_sqrd : float = (pos - instantiated_scene.global_position).length_squared()
+			if dist_sqrd > 4.0:
+				new_low_positions.append(pos)
+		low_positions = new_low_positions
 
 func generate_trees():
 	leaves_multimesh = MultiMeshInstance3D.new()
