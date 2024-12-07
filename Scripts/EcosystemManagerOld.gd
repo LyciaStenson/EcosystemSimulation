@@ -1,8 +1,7 @@
 extends NavigationRegion3D
 
-#@export var predator_num : int
-#@export var prey_num : int
-
+@export var predator_num : int
+@export var prey_num : int
 @export var water_num : int
 @export var tree_num : int
 
@@ -10,12 +9,12 @@ extends NavigationRegion3D
 
 #@export var predatorLine : LineGraph
 
-#@export var predator_scene : PackedScene
-#@export var prey_scene : PackedScene
+@export var predator_scene : PackedScene
+@export var prey_scene : PackedScene
 @export var water_scene : PackedScene
 @export var tree_mesh : Mesh
 @export var leaves_mesh : Mesh
-#@export var apple_mesh : Mesh
+@export var apple_mesh : Mesh
 
 @onready var fast_noise : FastNoiseLite = FastNoiseLite.new()
 
@@ -41,24 +40,22 @@ func generate_nav():
 	var source_geometry_data : NavigationMeshSourceGeometryData3D = NavigationMeshSourceGeometryData3D.new()
 	
 	NavigationServer3D.parse_source_geometry_data(navigation_mesh, source_geometry_data, self)
-	NavigationServer3D.bake_from_source_geometry_data(navigation_mesh, source_geometry_data)#, spawn_agents)
+	NavigationServer3D.bake_from_source_geometry_data(navigation_mesh, source_geometry_data, spawn_agents)
 
-#func spawn_agents():
-	#for i in agent_scenes.size():
-		#for i in agentn
-	#for i in predator_num:
-		#var instantiated_scene : Agent = predator_scene.instantiate()
-		#var position_index : int = randi_range(0, low_positions.size() - 1)
-		#instantiated_scene.position = low_positions[position_index]
-		#low_positions.remove_at(position_index)
-		#add_child(instantiated_scene)
+func spawn_agents():
+	for i in predator_num:
+		var instantiated_scene : Agent = predator_scene.instantiate()
+		var position_index : int = randi_range(0, low_positions.size() - 1)
+		instantiated_scene.position = low_positions[position_index]
+		low_positions.remove_at(position_index)
+		add_child(instantiated_scene)
 	
-	#for i in prey_num:
-		#var instantiated_scene : Agent = prey_scene.instantiate()
-		#var position_index : int = randi_range(0, low_positions.size() - 1)
-		#instantiated_scene.position = low_positions[position_index]
-		#low_positions.remove_at(position_index)
-		#add_child(instantiated_scene)
+	for i in prey_num:
+		var instantiated_scene : Agent = prey_scene.instantiate()
+		var position_index : int = randi_range(0, low_positions.size() - 1)
+		instantiated_scene.position = low_positions[position_index]
+		low_positions.remove_at(position_index)
+		add_child(instantiated_scene)
 
 func generate_spawn_positions():
 	for x in range(-240, 240):
