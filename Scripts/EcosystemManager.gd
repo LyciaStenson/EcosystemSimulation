@@ -25,8 +25,8 @@ extends NavigationRegion3D
 var tree_multimesh : MultiMeshInstance3D
 var leaves_multimesh : MultiMeshInstance3D
 
-var high_positions : Array[Vector3]
-var low_positions : Array[Vector3]
+var high_positions : Array[Vector3] = []
+var low_positions : Array[Vector3] = []
 
 func _ready():
 	fast_noise.noise_type = FastNoiseLite.TYPE_PERLIN
@@ -72,10 +72,10 @@ func generate_water():
 	for i in water_num:
 		var instantiated_scene : StaticBody3D = water_scene.instantiate()
 		var position_index : int = randi_range(0, low_positions.size() - 1)
+		add_child(instantiated_scene)
 		instantiated_scene.global_position = low_positions[position_index]
 		low_positions.remove_at(position_index)
-		add_child(instantiated_scene)
-		var new_low_positions : Array[Vector3]
+		var new_low_positions : Array[Vector3] = []
 		for pos in low_positions:
 			var dist_sqrd : float = (pos - instantiated_scene.global_position).length_squared()
 			if dist_sqrd > 4.0:
