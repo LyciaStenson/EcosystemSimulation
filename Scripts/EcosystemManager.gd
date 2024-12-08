@@ -78,7 +78,8 @@ func generate_water():
 		var new_low_positions : Array[Vector3] = []
 		for pos in low_positions:
 			var dist_sqrd : float = (pos - instantiated_scene.global_position).length_squared()
-			if dist_sqrd > 4.0:
+			var radius : float = 2.0
+			if dist_sqrd > (radius * radius) + 0.7:
 				new_low_positions.append(pos)
 		low_positions = new_low_positions
 
