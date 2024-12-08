@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dfftdtmflevi1" path="res://Scenes/Water.tscn" id="4_gtkrg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwok4"]
-albedo_color = Color(0.346986, 0.148938, 0.0944176, 1)
+albedo_color = Color(0.419447, 0.175092, 0.100646, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_5jufl"]
 material = SubResource("StandardMaterial3D_wwok4")
@@ -20,6 +20,7 @@ albedo_color = Color(0.311854, 0.554015, 0.200351, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_7is5k"]
 material = SubResource("StandardMaterial3D_8h6nf")
+radius = 0.6
 height = 1.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k24k5"]
@@ -48,7 +49,7 @@ glow_enabled = true
 [node name="EcosystemManager" parent="." instance=ExtResource("1_inw6k")]
 predator_num = 10
 predator_scene = ExtResource("2_ip68y")
-prey_num = 1000
+prey_num = 150
 prey_scene = ExtResource("3_ufxvl")
 water_num = 10
 tree_num = 500
