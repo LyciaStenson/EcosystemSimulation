@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UtilityConsideration" load_steps=3 format=3 uid="uid://bwja48wb0ls0q"]
+
+[ext_resource type="Script" path="res://Scripts/Utility/Considerations/UtilityConsideration.gd" id="1_q64wp"]
+
+[sub_resource type="Curve" id="Curve_5yems"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[resource]
+script = ExtResource("1_q64wp")
+context_key = "hydration"
+curve = SubResource("Curve_5yems")

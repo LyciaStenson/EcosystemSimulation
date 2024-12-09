@@ -8,16 +8,12 @@ var dehydration_rate : float = 0.1
 @onready var hydration_bar_shader := hydration_bar.get_active_material(0) as ShaderMaterial
 
 func _ready():
-	var hydration_motive := UtilityMotive.new()
-	hydration_motive.considerations
-	motives = [
-		
-	]
 	world_context.data = {
-		"hydration": false
+		"hydration": hydration
 	}
 
 func _process(delta):
+	super(delta)
 	hydration -= dehydration_rate * delta
 	if hydration <= 0.0:
 		queue_free()

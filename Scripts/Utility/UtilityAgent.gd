@@ -16,6 +16,9 @@ var world_context : UtilityWorldContext = UtilityWorldContext.new()
 func _ready():
 	birth_time = Time.get_ticks_msec()
 
+func _process(_delta):
+	get_discontentment(world_context)
+
 func get_discontentment(context : UtilityWorldContext) -> float:
 	var discontentment : float = 0.0
 	for motive in motives:

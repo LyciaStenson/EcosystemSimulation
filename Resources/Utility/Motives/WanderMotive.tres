@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="UtilityMotive" load_steps=2 format=3 uid="uid://cu17yfdlv8ahs"]
+
+[ext_resource type="Script" path="res://Scripts/Utility/Motives/UtilityMotive.gd" id="1_0i6qs"]
+
+[resource]
+script = ExtResource("1_0i6qs")
+considerations = Array[Resource("res://Scripts/Utility/Considerations/UtilityConsideration.gd")]([])

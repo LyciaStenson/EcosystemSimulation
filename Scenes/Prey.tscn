@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ceyg4khiolqd2"]
+[gd_scene load_steps=10 format=3 uid="uid://ceyg4khiolqd2"]
 
 [ext_resource type="Script" path="res://Scripts/PreyAgent.gd" id="1_ddr70"]
+[ext_resource type="Resource" uid="uid://bj18airo6y17t" path="res://Resources/Utility/Motives/HydrationMotive.tres" id="2_5idrf"]
 [ext_resource type="Shader" path="res://Shaders/ProgressBar.gdshader" id="3_c3dtd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_by572"]
@@ -30,6 +31,7 @@ radius = 5.0
 
 [node name="Prey" type="CharacterBody3D"]
 script = ExtResource("1_ddr70")
+motives = Array[Resource("res://Scripts/Utility/Motives/UtilityMotive.gd")]([ExtResource("2_5idrf")])
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
