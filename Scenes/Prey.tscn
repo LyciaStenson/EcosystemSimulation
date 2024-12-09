@@ -14,7 +14,7 @@ height = 1.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lh8r0"]
 render_priority = 0
 shader = ExtResource("3_c3dtd")
-shader_parameter/color = Color(0.34119, 0.630675, 0.792411, 1)
+shader_parameter/color = Color(0.134348, 0.291152, 0.600397, 1)
 shader_parameter/value = 0.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_pigep"]

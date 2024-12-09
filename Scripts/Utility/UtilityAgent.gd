@@ -7,12 +7,17 @@ class_name UtilityAgent
 
 var birth_time : float
 
-var world_context : UtilityWorldContext
+var world_context : UtilityWorldContext = UtilityWorldContext.new()
 
-var actions : Array[UtilityAction]
+@export var motives : Array[UtilityMotive]
+
+@export var actions : Array[UtilityAction]
 
 func _ready():
 	birth_time = Time.get_ticks_msec()
 
-func _process(delta):
-	pass
+func get_discontentment(context : UtilityWorldContext) -> float:
+	var discontentment : float = 0.0
+	for motive in motives:
+		discontentment += motive.get_insistence(context)
+	return discontentment
