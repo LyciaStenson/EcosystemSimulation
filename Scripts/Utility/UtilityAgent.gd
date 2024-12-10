@@ -3,8 +3,6 @@ class_name UtilityAgent
 
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent
 
-#@onready var sensor : UtilitySensor = $UtilitySensor
-
 var birth_time : float
 
 var world_context : UtilityWorldContext = UtilityWorldContext.new()
@@ -17,7 +15,18 @@ func _ready():
 	birth_time = Time.get_ticks_msec()
 
 func _process(_delta):
-	get_discontentment(world_context)
+	var best_motive : UtilityMotive = get_best_motive(world_context)
+	print("Best Motive: ", best_motive.name)
+
+func get_best_motive(context : UtilityWorldContext) -> UtilityMotive:
+	var best_motive : UtilityMotive
+	var best_insistence : float = -1.0
+	for motive in motives:
+		var insistence : float = motive.get_insistence(context)
+		if insistence > best_insistence:
+			best_insistence = insistence
+			best_motive = motive
+	return best_motive
 
 func get_discontentment(context : UtilityWorldContext) -> float:
 	var discontentment : float = 0.0

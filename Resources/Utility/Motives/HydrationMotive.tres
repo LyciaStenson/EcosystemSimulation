@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="UtilityMotive" load_steps=3 format=3 uid="uid://bj18airo6y17t"]
-
-[ext_resource type="Script" path="res://Scripts/Utility/Motives/UtilityMotive.gd" id="1_7mtxv"]
-[ext_resource type="Resource" uid="uid://bwja48wb0ls0q" path="res://Resources/Utility/Considerations/HydrationConsideration.tres" id="1_m1wyp"]
-
-[resource]
-script = ExtResource("1_7mtxv")
-considerations = Array[Resource("res://Scripts/Utility/Considerations/UtilityConsideration.gd")]([ExtResource("1_m1wyp")])

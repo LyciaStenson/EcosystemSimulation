@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ConstantConsideration" load_steps=2 format=3 uid="uid://dwbhglugsc5nr"]
+
+[ext_resource type="Script" path="res://Scripts/Utility/Considerations/ConstantConsideration.gd" id="1_0ycdi"]
+
+[resource]
+script = ExtResource("1_0ycdi")
+utility = 0.15
+context_key = ""

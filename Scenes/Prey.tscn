@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://ceyg4khiolqd2"]
+[gd_scene load_steps=13 format=3 uid="uid://ceyg4khiolqd2"]
 
 [ext_resource type="Script" path="res://Scripts/PreyAgent.gd" id="1_ddr70"]
-[ext_resource type="Resource" uid="uid://bj18airo6y17t" path="res://Resources/Utility/Motives/HydrationMotive.tres" id="2_5idrf"]
+[ext_resource type="Resource" uid="uid://cu17yfdlv8ahs" path="res://Resources/Utility/Motives/WanderMotive.tres" id="2_3rtl7"]
+[ext_resource type="Resource" uid="uid://bj18airo6y17t" path="res://Resources/Utility/Motives/HydrateMotive.tres" id="2_b5tv3"]
 [ext_resource type="Shader" path="res://Shaders/ProgressBar.gdshader" id="3_c3dtd"]
+[ext_resource type="Resource" uid="uid://i8fgn7b5vr3w" path="res://Resources/Utility/Motives/ReproduceMotive.tres" id="4_jubvp"]
+[ext_resource type="Script" path="res://Scripts/Utility/UtilitySensor.gd" id="4_p5s17"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_by572"]
 albedo_color = Color(0.83642, 0.481453, 0.242139, 1)
@@ -29,9 +32,10 @@ height = 1.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_atyq5"]
 radius = 5.0
 
-[node name="Prey" type="CharacterBody3D"]
+[node name="Prey" type="CharacterBody3D" groups=["prey"]]
 script = ExtResource("1_ddr70")
-motives = Array[Resource("res://Scripts/Utility/Motives/UtilityMotive.gd")]([ExtResource("2_5idrf")])
+lifetime = 10.0
+motives = Array[Resource("res://Scripts/Utility/Motives/UtilityMotive.gd")]([ExtResource("2_3rtl7"), ExtResource("2_b5tv3"), ExtResource("4_jubvp")])
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -46,9 +50,11 @@ mesh = SubResource("QuadMesh_pigep")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_u0yvc")
 
-[node name="SightArea" type="Area3D" parent="."]
+[node name="WaterSensor" type="Area3D" parent="."]
+script = ExtResource("4_p5s17")
+target_group = "water"
 
-[node name="CollisionShape" type="CollisionShape3D" parent="SightArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="WaterSensor"]
 shape = SubResource("SphereShape3D_atyq5")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]

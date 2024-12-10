@@ -1,15 +1,18 @@
 extends Area3D
 class_name UtilitySensor
 
-var targetGroups : Array[String]
+@export var target_group : String
 
 var targets : Array[Node3D]
 
-func visibility_entered(body : Node3D):
-	for group in targetGroups:
-		if body.is_in_group("Predator"):
-			targets.append(group)
+func _ready():
+	connect("body_entered", body_entered)
+	connect("body_exited", body_exited)
 
-func visibility_exited(body : Node3D):
+func body_entered(body : Node3D):
+	if body.is_in_group(target_group):
+		targets.append(body)
+
+func body_exited(body : Node3D):
 	if targets.has(body):
 		targets.erase(body)

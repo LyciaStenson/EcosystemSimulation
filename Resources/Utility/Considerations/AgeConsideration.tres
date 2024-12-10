@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CurveConsideration" load_steps=3 format=3 uid="uid://cnv1g1t4houf5"]
+
+[ext_resource type="Script" path="res://Scripts/Utility/Considerations/CurveConsideration.gd" id="1_svhiv"]
+
+[sub_resource type="Curve" id="Curve_q1ub3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[resource]
+script = ExtResource("1_svhiv")
+curve = SubResource("Curve_q1ub3")
+context_key = "age"
