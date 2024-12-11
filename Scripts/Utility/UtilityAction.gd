@@ -1,5 +1,5 @@
 extends Resource
-class_name UtilityMotive
+class_name UtilityAction
 
 @export var name : String
 

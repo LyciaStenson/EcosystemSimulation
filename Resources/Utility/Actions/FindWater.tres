@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="UtilityAction" load_steps=2 format=3 uid="uid://ba1thevh1a2fu"]
-
-[ext_resource type="Script" path="res://Scripts/Utility/Actions/UtilityAction.gd" id="1_rnucf"]
-
-[resource]
-script = ExtResource("1_rnucf")
-name = "find_water"

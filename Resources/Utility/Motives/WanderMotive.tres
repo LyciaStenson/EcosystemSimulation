@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="UtilityMotive" load_steps=3 format=3 uid="uid://cu17yfdlv8ahs"]
-
-[ext_resource type="Script" path="res://Scripts/Utility/Motives/UtilityMotive.gd" id="1_0i6qs"]
-[ext_resource type="Resource" uid="uid://dwbhglugsc5nr" path="res://Resources/Utility/Considerations/WanderConsideration.tres" id="1_qpv8t"]
-
-[resource]
-script = ExtResource("1_0i6qs")
-name = "wander"
-considerations = Array[Resource("res://Scripts/Utility/Considerations/UtilityConsideration.gd")]([ExtResource("1_qpv8t")])

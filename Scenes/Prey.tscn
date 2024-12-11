@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://ceyg4khiolqd2"]
+[gd_scene load_steps=12 format=3 uid="uid://ceyg4khiolqd2"]
 
 [ext_resource type="Script" path="res://Scripts/PreyAgent.gd" id="1_ddr70"]
-[ext_resource type="Resource" uid="uid://cu17yfdlv8ahs" path="res://Resources/Utility/Motives/WanderMotive.tres" id="2_3rtl7"]
-[ext_resource type="Resource" uid="uid://bj18airo6y17t" path="res://Resources/Utility/Motives/HydrateMotive.tres" id="2_b5tv3"]
+[ext_resource type="Resource" uid="uid://d1dwnp0cfqtmf" path="res://Resources/Utility/Actions/WanderAction.tres" id="2_ty4fp"]
+[ext_resource type="Resource" uid="uid://ba1thevh1a2fu" path="res://Resources/Utility/Actions/FindWaterAction.tres" id="3_a8pmb"]
 [ext_resource type="Shader" path="res://Shaders/ProgressBar.gdshader" id="3_c3dtd"]
-[ext_resource type="Resource" uid="uid://i8fgn7b5vr3w" path="res://Resources/Utility/Motives/ReproduceMotive.tres" id="4_jubvp"]
 [ext_resource type="Script" path="res://Scripts/Utility/UtilitySensor.gd" id="4_p5s17"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_by572"]
@@ -35,7 +34,7 @@ radius = 5.0
 [node name="Prey" type="CharacterBody3D" groups=["prey"]]
 script = ExtResource("1_ddr70")
 lifetime = 10.0
-motives = Array[Resource("res://Scripts/Utility/Motives/UtilityMotive.gd")]([ExtResource("2_3rtl7"), ExtResource("2_b5tv3"), ExtResource("4_jubvp")])
+actions = Array[Resource("res://Scripts/Utility/UtilityAction.gd")]([ExtResource("2_ty4fp"), ExtResource("3_a8pmb")])
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
