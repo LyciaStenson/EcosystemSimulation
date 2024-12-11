@@ -8,13 +8,36 @@ var birth_time : float
 var world_context : UtilityWorldContext = UtilityWorldContext.new()
 
 @export var actions : Array[UtilityAction]
+var best_action : UtilityAction
+
+@export var speed : float = 1.0
+
+var direction : Vector3
 
 func _ready():
 	birth_time = Time.get_ticks_msec()
+	
+	set_physics_process(false)
+	call_deferred("enable_physics_process")
 
-func _process(_delta):
-	var best_action : UtilityAction = get_best_action(world_context)
-	print("Best Action: ", best_action.name)
+func enable_physics_process():
+	await get_tree().physics_frame
+	set_physics_process(true)
+
+func _physics_process(delta):
+	if nav_agent.is_navigation_finished():
+		direction = Vector3()
+	
+	direction = global_position.direction_to(nav_agent.get_next_path_position())
+	
+	if direction:
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
+	
+	move_and_slide()
 
 func get_best_action(context : UtilityWorldContext) -> UtilityAction:
 	var best_action : UtilityAction

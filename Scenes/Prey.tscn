@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ceyg4khiolqd2"]
+[gd_scene load_steps=17 format=3 uid="uid://ceyg4khiolqd2"]
 
 [ext_resource type="Script" path="res://Scripts/PreyAgent.gd" id="1_ddr70"]
 [ext_resource type="Resource" uid="uid://d1dwnp0cfqtmf" path="res://Resources/Utility/Actions/WanderAction.tres" id="2_ty4fp"]
@@ -16,14 +16,50 @@ material = SubResource("StandardMaterial3D_by572")
 radius = 0.25
 height = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lh8r0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g1feg"]
 render_priority = 0
 shader = ExtResource("3_c3dtd")
 shader_parameter/color = Color(0.134348, 0.291152, 0.600397, 1)
 shader_parameter/value = 0.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_pigep"]
-material = SubResource("ShaderMaterial_lh8r0")
+material = SubResource("ShaderMaterial_g1feg")
+size = Vector2(0.8, 0.1)
+
+[sub_resource type="Shader" id="Shader_gjcqs"]
+code = "shader_type spatial;
+render_mode cull_disabled;
+render_mode unshaded;
+
+uniform vec3 color : source_color;
+
+uniform float value;
+
+varying vec3 pos;
+
+void vertex() {
+	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(INV_VIEW_MATRIX[0], INV_VIEW_MATRIX[1], INV_VIEW_MATRIX[2], MODEL_MATRIX[3]);
+	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+	pos = mat3(MODEL_MATRIX) * VERTEX;
+}
+
+void fragment() {
+	bool isEdge = (pos.x < -0.39) || (pos.x > 0.39) || (pos.y > 0.04) || (pos.y < -0.04);
+	if (!isEdge && (pos.x > value)) {
+		discard;
+	}
+	ALBEDO = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f3cc7"]
+render_priority = 0
+shader = SubResource("Shader_gjcqs")
+shader_parameter/color = Color(0.415965, 0.457035, 0.454627, 1)
+shader_parameter/value = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_egmwt"]
+material = SubResource("ShaderMaterial_f3cc7")
 size = Vector2(0.8, 0.1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u0yvc"]
@@ -35,7 +71,7 @@ radius = 5.0
 
 [node name="Prey" type="CharacterBody3D" groups=["prey"]]
 script = ExtResource("1_ddr70")
-lifetime = 10.0
+lifetime = 120.0
 actions = Array[Resource("res://Scripts/Utility/UtilityAction.gd")]([ExtResource("2_ty4fp"), ExtResource("3_a8pmb"), ExtResource("4_i8p1p")])
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
@@ -43,9 +79,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("CapsuleMesh_quewn")
 
 [node name="HydrationBar" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 cast_shadow = 0
 mesh = SubResource("QuadMesh_pigep")
+script = ExtResource("6_e4csd")
+
+[node name="LifetimeBar" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_egmwt")
 script = ExtResource("6_e4csd")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
