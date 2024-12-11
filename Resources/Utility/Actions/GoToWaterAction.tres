@@ -1,7 +1,10 @@
-[gd_resource type="Resource" script_class="UtilityAction" load_steps=2 format=3 uid="uid://cgpvgs2rr1n2x"]
+[gd_resource type="Resource" script_class="UtilityAction" load_steps=4 format=3 uid="uid://cgpvgs2rr1n2x"]
 
+[ext_resource type="Resource" uid="uid://bwja48wb0ls0q" path="res://Resources/Utility/Considerations/HydrationConsideration.tres" id="1_ajnww"]
 [ext_resource type="Script" path="res://Scripts/Utility/UtilityAction.gd" id="1_crhw0"]
+[ext_resource type="Resource" uid="uid://car86b511ktq5" path="res://Resources/Utility/Considerations/WaterInSightConsideration.tres" id="2_c8bp6"]
 
 [resource]
 script = ExtResource("1_crhw0")
 name = "go_to_water"
+considerations = Array[Resource("res://Scripts/Utility/Considerations/UtilityConsideration.gd")]([ExtResource("1_ajnww"), ExtResource("2_c8bp6")])
