@@ -1,7 +1,7 @@
 extends UtilityAgent
 class_name PreyAgent
 
-var age_proportion : float = 0.0
+var age_proportion : float = 0.0 # age as a proportion of lifetime
 
 var hydration : float = 1.0
 var dehydration_rate : float = 0.05

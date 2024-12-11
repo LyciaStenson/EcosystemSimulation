@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="UtilityAction" load_steps=2 format=3 uid="uid://cgpvgs2rr1n2x"]
+
+[ext_resource type="Script" path="res://Scripts/Utility/Actions/UtilityAction.gd" id="1_crhw0"]
+
+[resource]
+script = ExtResource("1_crhw0")
+name = "go_to_water"

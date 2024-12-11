@@ -1,4 +1,5 @@
 extends UtilityConsideration
+class_name BooleanConsideration
 
 enum UsefulWhen {
 	TRUE = 1,
