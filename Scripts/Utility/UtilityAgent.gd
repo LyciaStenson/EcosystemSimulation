@@ -9,6 +9,7 @@ var world_context : UtilityWorldContext = UtilityWorldContext.new()
 
 @export var actions : Array[UtilityAction]
 var best_action : UtilityAction
+var previous_action : UtilityAction
 
 @export var speed : float = 1.0
 

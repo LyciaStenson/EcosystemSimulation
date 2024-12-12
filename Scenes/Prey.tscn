@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ceyg4khiolqd2"]
+[gd_scene load_steps=18 format=3 uid="uid://ceyg4khiolqd2"]
 
 [ext_resource type="Script" path="res://Scripts/PreyAgent.gd" id="1_ddr70"]
 [ext_resource type="Resource" uid="uid://d1dwnp0cfqtmf" path="res://Resources/Utility/Actions/WanderAction.tres" id="2_ty4fp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" path="res://Shaders/ProgressBar.gdshader" id="3_c3dtd"]
 [ext_resource type="Resource" uid="uid://cgpvgs2rr1n2x" path="res://Resources/Utility/Actions/GoToWaterAction.tres" id="4_i8p1p"]
 [ext_resource type="Script" path="res://Scripts/Utility/UtilitySensor.gd" id="4_p5s17"]
+[ext_resource type="Resource" uid="uid://c827ahwboam6s" path="res://Resources/Utility/Actions/DrinkAction.tres" id="5_sl1gx"]
 [ext_resource type="Script" path="res://Scenes/Bar.gd" id="6_e4csd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_by572"]
@@ -72,7 +73,7 @@ radius = 5.0
 [node name="Prey" type="CharacterBody3D" groups=["prey"]]
 script = ExtResource("1_ddr70")
 lifetime = 120.0
-actions = Array[Resource("res://Scripts/Utility/UtilityAction.gd")]([ExtResource("2_ty4fp"), ExtResource("3_a8pmb"), ExtResource("4_i8p1p")])
+actions = Array[Resource("res://Scripts/Utility/UtilityAction.gd")]([ExtResource("2_ty4fp"), ExtResource("3_a8pmb"), ExtResource("4_i8p1p"), ExtResource("5_sl1gx")])
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
