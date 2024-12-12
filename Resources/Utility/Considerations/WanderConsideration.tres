@@ -4,5 +4,4 @@
 
 [resource]
 script = ExtResource("1_0ycdi")
-utility = 0.15
-context_key = ""
+utility = 0.25

@@ -22,11 +22,14 @@ func _ready():
 	world_context.data = {
 		"age": 0.0,
 		"hydration": hydration,
+		"drinking": false,
 		"water_in_sight": false
 	}
 
 func _physics_process(delta):
 	best_action = get_best_action(world_context)
+	print(best_action.name)
+	
 	if drinking:
 		hydration += drink_rate * delta
 		drinking = false
