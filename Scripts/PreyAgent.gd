@@ -8,7 +8,7 @@ var wander_timer : float = 10.0
 var wander_time : float = 10.0
 
 var hydration : float = 1.0
-var dehydration_rate : float = randf_range(0.01, 0.1)
+var dehydration_rate : float = 0.02
 
 var known_waters : Array[Vector3]
 var nearest_known_water : Vector3
@@ -95,11 +95,11 @@ func go_to_mate(delta : float):
 	wander(delta)
 
 func go_to_water(_delta : float):
-	#print("Before: ", Time.get_ticks_msec() * 0.001)
-	nav_agent.target_position = get_nearest_known_water_pos()
+	var new_water_pos : Vector3 = get_nearest_known_water_pos()
+	if nav_agent.target_position != new_water_pos:
+		nav_agent.target_position = new_water_pos
 	if nav_agent.is_navigation_finished():
 		at_water = true
-	#print("After: ", Time.get_ticks_msec() * 0.001)
 
 func go_to_water_end():
 	checked_waters = false
@@ -124,7 +124,6 @@ func get_nearest_known_water_pos() -> Vector3:
 		if new_dist_sqrd < nearest_dist_sqrd:
 			nearest_dist_sqrd = new_dist_sqrd
 			new_nearest_known_water = known_waters[i]
-	#print(new_nearest_known_water)
-	#nearest_known_water = Vector3(randf_range(-24.0, 24.0), 0.0, randf_range(-24.0, 24.0))
 	nearest_known_water = new_nearest_known_water
+	print(nearest_known_water)
 	return nearest_known_water
