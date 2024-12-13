@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="UtilityAction" load_steps=3 format=3 uid="uid://d1dwnp0cfqtmf"]
 
-[ext_resource type="Resource" uid="uid://dwbhglugsc5nr" path="res://Resources/Prey/Considerations/WanderConsideration.tres" id="1_22udo"]
-[ext_resource type="Script" path="res://Scripts/Utility/UtilityAction.gd" id="1_wwru0"]
+[ext_resource type="Resource" uid="uid://dwbhglugsc5nr" path="res://Resources/Prey/Considerations/WanderConsideration.tres" id="1_6thbb"]
+[ext_resource type="Script" path="res://Scripts/Utility/UtilityAction.gd" id="2_xjkfn"]
 
 [resource]
-script = ExtResource("1_wwru0")
+script = ExtResource("2_xjkfn")
 name = "wander"
-considerations = Array[Resource("res://Scripts/Utility/Considerations/UtilityConsideration.gd")]([ExtResource("1_22udo")])
+considerations = Array[Resource("res://Scripts/Utility/Considerations/UtilityConsideration.gd")]([ExtResource("1_6thbb")])

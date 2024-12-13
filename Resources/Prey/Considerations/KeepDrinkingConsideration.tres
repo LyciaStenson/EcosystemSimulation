@@ -1,12 +1,14 @@
 [gd_resource type="Resource" script_class="CurveConsideration" load_steps=3 format=3 uid="uid://cnngcl2me7d8b"]
 
-[ext_resource type="Script" path="res://Scripts/Utility/Considerations/CurveConsideration.gd" id="1_b5jnc"]
+[ext_resource type="Script" path="res://Scripts/Utility/Considerations/CurveConsideration.gd" id="1_ilh6g"]
 
 [sub_resource type="Curve" id="Curve_mp878"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.5, 0.0, 0, 0]
 point_count = 2
 
 [resource]
-script = ExtResource("1_b5jnc")
+resource_local_to_scene = true
+script = ExtResource("1_ilh6g")
 curve = SubResource("Curve_mp878")
 context_key = "hydration"
+bias = 1.0

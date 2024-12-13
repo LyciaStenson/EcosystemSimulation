@@ -1,7 +1,8 @@
 [gd_resource type="Resource" script_class="ConstantConsideration" load_steps=2 format=3 uid="uid://dwbhglugsc5nr"]
 
-[ext_resource type="Script" path="res://Scripts/Utility/Considerations/ConstantConsideration.gd" id="1_0ycdi"]
+[ext_resource type="Script" path="res://Scripts/Utility/Considerations/ConstantConsideration.gd" id="1_jp7y1"]
 
 [resource]
-script = ExtResource("1_0ycdi")
-utility = 0.25
+script = ExtResource("1_jp7y1")
+utility = 0.001
+bias = 1.0

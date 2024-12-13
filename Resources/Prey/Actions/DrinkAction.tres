@@ -1,10 +1,11 @@
 [gd_resource type="Resource" script_class="UtilityAction" load_steps=4 format=3 uid="uid://c827ahwboam6s"]
 
-[ext_resource type="Script" path="res://Scripts/Utility/UtilityAction.gd" id="1_djtkx"]
-[ext_resource type="Resource" uid="uid://cnngcl2me7d8b" path="res://Resources/Prey/Considerations/KeepDrinkingConsideration.tres" id="1_hfhpn"]
-[ext_resource type="Resource" uid="uid://bpmaprl6u5d83" path="res://Resources/Prey/Considerations/AtWaterConsideration.tres" id="2_relpl"]
+[ext_resource type="Resource" uid="uid://cnngcl2me7d8b" path="res://Resources/Prey/Considerations/KeepDrinkingConsideration.tres" id="1_q3tgl"]
+[ext_resource type="Resource" uid="uid://bpmaprl6u5d83" path="res://Resources/Prey/Considerations/AtWaterConsideration.tres" id="2_et5dk"]
+[ext_resource type="Script" path="res://Scripts/Utility/UtilityAction.gd" id="3_q1mja"]
 
 [resource]
-script = ExtResource("1_djtkx")
+resource_local_to_scene = true
+script = ExtResource("3_q1mja")
 name = "drink"
-considerations = Array[Resource("res://Scripts/Utility/Considerations/UtilityConsideration.gd")]([ExtResource("1_hfhpn"), ExtResource("2_relpl")])
+considerations = Array[Resource("res://Scripts/Utility/Considerations/UtilityConsideration.gd")]([ExtResource("1_q3tgl"), ExtResource("2_et5dk")])

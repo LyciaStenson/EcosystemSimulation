@@ -18,6 +18,11 @@ var direction : Vector3
 func _ready():
 	birth_time = Time.get_ticks_msec()
 	
+	var duplicated_actions : Array[UtilityAction] = []
+	for action in actions:
+		duplicated_actions.append(action.get_duplicate())
+	actions = duplicated_actions
+	
 	set_physics_process(false)
 	call_deferred("enable_physics_process")
 
@@ -25,7 +30,7 @@ func enable_physics_process():
 	await get_tree().physics_frame
 	set_physics_process(true)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if nav_agent.is_navigation_finished():
 		direction = Vector3()
 	
@@ -41,14 +46,15 @@ func _physics_process(delta):
 	move_and_slide()
 
 func get_best_action(context : UtilityWorldContext) -> UtilityAction:
-	var best_action : UtilityAction
+	var return_action : UtilityAction
 	var best_insistence : float = -1.0
 	for action in actions:
 		var insistence : float = action.get_insistence(context)
 		if insistence > best_insistence:
 			best_insistence = insistence
-			best_action = action
-	return best_action
+			return_action = action
+	#print(return_action.name, ": ", best_insistence)
+	return return_action
 
 func get_discontentment(context : UtilityWorldContext) -> float:
 	var discontentment : float = 0.0
