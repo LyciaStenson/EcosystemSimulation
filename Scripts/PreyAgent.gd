@@ -11,6 +11,7 @@ var drink_rate : float = 0.02
 
 @onready var lifetime_bar : Bar = $LifetimeBar
 @onready var hydration_bar : Bar = $HydrationBar
+@onready var current_action_label : Label3D = $CurrentActionLabel
 
 @onready var water_sensor : UtilitySensor = $WaterSensor
 
@@ -45,7 +46,7 @@ func _physics_process(delta):
 		call(previous_action.name + "_end")
 	
 	call(best_action.name, delta)
-	print(best_action.name)
+	current_action_label.text = best_action.name
 	
 	previous_action = best_action
 	

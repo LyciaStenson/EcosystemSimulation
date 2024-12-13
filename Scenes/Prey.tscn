@@ -79,6 +79,14 @@ actions = Array[Resource("res://Scripts/Utility/UtilityAction.gd")]([ExtResource
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("CapsuleMesh_quewn")
 
+[node name="CurrentActionLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+pixel_size = 0.001
+billboard = 1
+text = "Current Action"
+font_size = 98
+outline_size = 4
+
 [node name="HydrationBar" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 cast_shadow = 0
