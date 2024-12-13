@@ -1,4 +1,4 @@
-extends UtilityConsideration
+extends BiasableConsideration
 class_name CurveConsideration
 
 @export var curve : Curve
@@ -6,4 +6,4 @@ class_name CurveConsideration
 @export var context_key : String
 
 func evaluate(context : UtilityWorldContext) -> float:
-	return curve.sample(context.data[context_key])
+	return curve.sample(context.data[context_key]) * bias
