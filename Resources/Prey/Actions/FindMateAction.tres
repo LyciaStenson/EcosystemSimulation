@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UtilityAction" load_steps=5 format=3 uid="uid://cokxij5lla4fi"]
+
+[ext_resource type="Resource" uid="uid://cnv1g1t4houf5" path="res://Resources/Prey/Considerations/AgeConsideration.tres" id="1_d2y50"]
+[ext_resource type="Script" path="res://Scripts/Utility/UtilityAction.gd" id="2_j3kc0"]
+[ext_resource type="Resource" uid="uid://cjwddwcw0ayj7" path="res://Resources/Prey/Considerations/OffspringConsideration.tres" id="2_tmmon"]
+[ext_resource type="Resource" uid="uid://c4jhnks1pw3do" path="res://Resources/Prey/Considerations/NotWithMateConsideration.tres" id="3_e6uu8"]
+
+[resource]
+script = ExtResource("2_j3kc0")
+name = "find_mate"
+considerations = Array[Resource("res://Scripts/Utility/Considerations/UtilityConsideration.gd")]([ExtResource("1_d2y50"), ExtResource("2_tmmon"), ExtResource("3_e6uu8")])

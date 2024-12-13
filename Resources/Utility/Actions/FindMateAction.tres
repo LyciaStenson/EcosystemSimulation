@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="UtilityAction" load_steps=2 format=3 uid="uid://cokxij5lla4fi"]
-
-[ext_resource type="Script" path="res://Scripts/Utility/UtilityAction.gd" id="1_wtcy6"]
-
-[resource]
-script = ExtResource("1_wtcy6")
-name = "find_mate"

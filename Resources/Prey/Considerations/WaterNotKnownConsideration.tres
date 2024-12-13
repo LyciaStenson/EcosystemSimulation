@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BooleanConsideration" load_steps=2 format=3 uid="uid://rltcvxtefchx"]
+
+[ext_resource type="Script" path="res://Scripts/Utility/Considerations/BooleanConsideration.gd" id="1_lp02d"]
+
+[resource]
+script = ExtResource("1_lp02d")
+context_key = "water_known"
+useful_when = 0

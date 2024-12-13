@@ -5,9 +5,12 @@ class_name UtilitySensor
 
 var targets : Array[Node3D]
 
+signal target_entered(body : Node3D)
+signal target_exited(body : Node3D)
+
 func _ready():
-	connect("body_entered", body_entered)
-	connect("body_exited", body_exited)
+	body_entered.connect(on_body_entered)
+	body_exited.connect(on_body_exited)
 
 func get_nearest() -> Node3D:
 	if targets.is_empty():
@@ -21,10 +24,12 @@ func get_nearest() -> Node3D:
 			nearest_target = targets[i]
 	return nearest_target
 
-func body_entered(body : Node3D):
+func on_body_entered(body : Node3D):
 	if body.is_in_group(target_group):
+		target_entered.emit(body)
 		targets.append(body)
 
-func body_exited(body : Node3D):
+func on_body_exited(body : Node3D):
 	if targets.has(body):
+		target_exited.emit(body)
 		targets.erase(body)

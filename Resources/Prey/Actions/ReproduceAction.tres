@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UtilityAction" load_steps=5 format=3 uid="uid://dulwj7ggx62gl"]
+
+[ext_resource type="Resource" uid="uid://cnv1g1t4houf5" path="res://Resources/Prey/Considerations/AgeConsideration.tres" id="1_f8i6d"]
+[ext_resource type="Script" path="res://Scripts/Utility/UtilityAction.gd" id="1_m0hex"]
+[ext_resource type="Resource" uid="uid://cjwddwcw0ayj7" path="res://Resources/Prey/Considerations/OffspringConsideration.tres" id="2_vk5gs"]
+[ext_resource type="Resource" uid="uid://bwroqncvqmo5w" path="res://Resources/Prey/Considerations/WithMateConsideration.tres" id="3_lgxqc"]
+
+[resource]
+script = ExtResource("1_m0hex")
+name = "reproduce"
+considerations = Array[Resource("res://Scripts/Utility/Considerations/UtilityConsideration.gd")]([ExtResource("1_f8i6d"), ExtResource("2_vk5gs"), ExtResource("3_lgxqc")])

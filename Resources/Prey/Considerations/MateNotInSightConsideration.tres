@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BooleanConsideration" load_steps=2 format=3 uid="uid://cnd5astbfk1oi"]
+
+[ext_resource type="Script" path="res://Scripts/Utility/Considerations/BooleanConsideration.gd" id="1_rj1gs"]
+
+[resource]
+script = ExtResource("1_rj1gs")
+context_key = "mate_in_sight"
+useful_when = 0

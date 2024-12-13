@@ -1,13 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://ceyg4khiolqd2"]
+[gd_scene load_steps=21 format=3 uid="uid://ceyg4khiolqd2"]
 
 [ext_resource type="Script" path="res://Scripts/PreyAgent.gd" id="1_ddr70"]
-[ext_resource type="Resource" uid="uid://d1dwnp0cfqtmf" path="res://Resources/Utility/Actions/WanderAction.tres" id="2_ty4fp"]
-[ext_resource type="Resource" uid="uid://ba1thevh1a2fu" path="res://Resources/Utility/Actions/FindWaterAction.tres" id="3_a8pmb"]
+[ext_resource type="Resource" uid="uid://d1dwnp0cfqtmf" path="res://Resources/Prey/Actions/WanderAction.tres" id="2_v5o67"]
 [ext_resource type="Shader" path="res://Shaders/ProgressBar.gdshader" id="3_c3dtd"]
-[ext_resource type="Resource" uid="uid://cgpvgs2rr1n2x" path="res://Resources/Utility/Actions/GoToWaterAction.tres" id="4_i8p1p"]
+[ext_resource type="Resource" uid="uid://ba1thevh1a2fu" path="res://Resources/Prey/Actions/FindWaterAction.tres" id="3_dni5w"]
+[ext_resource type="Resource" uid="uid://cgpvgs2rr1n2x" path="res://Resources/Prey/Actions/GoToWaterAction.tres" id="4_8c70q"]
 [ext_resource type="Script" path="res://Scripts/Utility/UtilitySensor.gd" id="4_p5s17"]
-[ext_resource type="Resource" uid="uid://c827ahwboam6s" path="res://Resources/Utility/Actions/DrinkAction.tres" id="5_sl1gx"]
+[ext_resource type="Resource" uid="uid://c827ahwboam6s" path="res://Resources/Prey/Actions/DrinkAction.tres" id="5_jvqdv"]
 [ext_resource type="Script" path="res://Scenes/Bar.gd" id="6_e4csd"]
+[ext_resource type="Resource" uid="uid://cokxij5lla4fi" path="res://Resources/Prey/Actions/FindMateAction.tres" id="6_hqixi"]
+[ext_resource type="Resource" uid="uid://dulwj7ggx62gl" path="res://Resources/Prey/Actions/ReproduceAction.tres" id="7_u0jps"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_by572"]
 albedo_color = Color(0.83642, 0.481453, 0.242139, 1)
@@ -70,10 +72,13 @@ height = 1.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_atyq5"]
 radius = 5.0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_hexum"]
+radius = 5.0
+
 [node name="Prey" type="CharacterBody3D" groups=["prey"]]
 script = ExtResource("1_ddr70")
 lifetime = 120.0
-actions = Array[Resource("res://Scripts/Utility/UtilityAction.gd")]([ExtResource("2_ty4fp"), ExtResource("3_a8pmb"), ExtResource("4_i8p1p"), ExtResource("5_sl1gx")])
+actions = Array[Resource("res://Scripts/Utility/UtilityAction.gd")]([ExtResource("2_v5o67"), ExtResource("3_dni5w"), ExtResource("4_8c70q"), ExtResource("5_jvqdv"), ExtResource("6_hqixi"), ExtResource("7_u0jps")])
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -109,6 +114,13 @@ target_group = "water"
 
 [node name="CollisionShape" type="CollisionShape3D" parent="WaterSensor"]
 shape = SubResource("SphereShape3D_atyq5")
+
+[node name="MateSensor" type="Area3D" parent="."]
+script = ExtResource("4_p5s17")
+target_group = "prey_mate"
+
+[node name="CollisionShape" type="CollisionShape3D" parent="MateSensor"]
+shape = SubResource("SphereShape3D_hexum")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
 debug_enabled = true
