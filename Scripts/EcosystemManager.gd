@@ -21,6 +21,9 @@ class_name EcosystemManager
 @export var tree_mesh : Mesh
 @export var leaves_mesh : Mesh
 
+@export_category("UI")
+@export var prey_num_label : Label
+
 @onready var fast_noise : FastNoiseLite = FastNoiseLite.new()
 
 var tree_multimesh : MultiMeshInstance3D
@@ -30,6 +33,7 @@ var high_positions : Array[Vector3] = []
 var low_positions : Array[Vector3] = []
 
 func _ready():
+	prey_num_label.text = str(prey_num) + " Prey"
 	fast_noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	fast_noise.seed = randi()
 	generate_spawn_positions()
@@ -62,6 +66,12 @@ func spawn_prey(pos : Vector3) -> void:
 	var instantiated_scene := prey_scene.instantiate()
 	instantiated_scene.position = pos
 	add_child(instantiated_scene)
+	prey_num += 1
+	prey_num_label.text = str(prey_num) + " Prey"
+
+func prey_death() -> void:
+	prey_num -= 1
+	prey_num_label.text = str(prey_num) + " Prey"
 
 func generate_spawn_positions():
 	for x in range(-240, 240):

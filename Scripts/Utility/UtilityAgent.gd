@@ -58,9 +58,11 @@ func get_best_action(context : UtilityWorldContext) -> UtilityAction:
 		if insistence > best_insistence:
 			best_insistence = insistence
 			return_action = action
-	#print(return_action.name, ": ", best_insistence)
 	return return_action
 
+# This function could be used in the future to build a
+# system where the agent prioritisesm minimising discontentment
+# rather than just performing the action with the highest inistence
 func get_discontentment(context : UtilityWorldContext) -> float:
 	var discontentment : float = 0.0
 	for action in actions:

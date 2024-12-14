@@ -59,6 +59,7 @@ func _physics_process(delta : float):
 		hydration -= dehydration_rate * delta
 	age_proportion = ((Time.get_ticks_msec() - birth_time) * 0.001) / lifetime
 	if hydration <= 0.0 || age_proportion >= 1.0:
+		ecosystem_manager.prey_death()
 		queue_free()
 	hydration = clampf(hydration, 0.0, 1.0)
 	hydration_bar.set_value(hydration)
@@ -104,26 +105,35 @@ func find_mate(delta : float):
 	wants_to_mate = true
 	wander(delta)
 
+func find_mate_end():
+	wants_to_mate = false
+
 func go_to_mate(delta : float):
+	wants_to_mate = true
 	var nearest_mate_pos : Vector3 = get_nearest_mate()
 	if nav_agent.target_position != nearest_mate_pos:
 		nav_agent.target_position = nearest_mate_pos
 	if nav_agent.is_navigation_finished():
 		with_mate = true
 
+func go_to_mate_end():
+	wants_to_mate = false
+
 func mate(delta : float):
+	wants_to_mate = true
 	last_mate_time = Time.get_ticks_msec()
 	offspring_num += 1
 	ecosystem_manager.spawn_prey(global_position)
 
 func mate_end():
+	wants_to_mate = false
 	with_mate = false
 
 func go_to_water(_delta : float):
 	var new_water_pos : Vector3 = get_nearest_known_water_pos()
 	if nav_agent.target_position != new_water_pos:
 		nav_agent.target_position = new_water_pos
-	if nav_agent.is_navigation_finished():
+	if nav_agent.is_navigation_finished() || global_position.distance_squared_to(new_water_pos) < 8.0:
 		at_water = true
 
 func go_to_water_end():

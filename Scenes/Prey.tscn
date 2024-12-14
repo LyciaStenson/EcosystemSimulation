@@ -106,3 +106,5 @@ shape = SubResource("SphereShape3D_hexum")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
 debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0.835294, 0.482353, 0.243137, 1)
