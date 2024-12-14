@@ -62,7 +62,9 @@ func _physics_process(delta : float):
 		queue_free()
 	hydration = clampf(hydration, 0.0, 1.0)
 	hydration_bar.set_value(hydration)
+	hydration_bar.set_parent_scale(age_scale)
 	lifetime_bar.set_value(age_proportion)
+	lifetime_bar.set_parent_scale(age_scale)
 	
 	world_context.data["age"] = age_proportion
 	world_context.data["offspring_num"] = offspring_num

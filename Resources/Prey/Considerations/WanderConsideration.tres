@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_jp7y1")
-utility = 1.0
-bias = -10.0
+utility = 0.2
+bias = 1.0

@@ -6,5 +6,8 @@ class_name Bar
 func set_value(value : float):
 	shader.set_shader_parameter("value", normalize_to_bar(value))
 
+func set_parent_scale(value : float):
+	shader.set_shader_parameter("parent_scale", value)
+
 func normalize_to_bar(value : float) -> float:
 	return (value - 0.5) * 0.8
