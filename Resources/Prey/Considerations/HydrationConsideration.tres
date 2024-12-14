@@ -9,5 +9,6 @@ point_count = 3
 [resource]
 script = ExtResource("1_6xcds")
 curve = SubResource("Curve_1v3b8")
+value_multiplier = 1.0
 context_key = "hydration"
 bias = 1.0

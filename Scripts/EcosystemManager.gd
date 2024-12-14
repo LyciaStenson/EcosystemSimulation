@@ -33,6 +33,7 @@ var high_positions : Array[Vector3] = []
 var low_positions : Array[Vector3] = []
 
 func _ready():
+	Engine.time_scale = 1.0
 	prey_num_label.text = str(prey_num) + " Prey"
 	fast_noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	fast_noise.seed = randi()

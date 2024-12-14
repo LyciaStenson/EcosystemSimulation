@@ -18,7 +18,7 @@ var direction : Vector3
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
-	birth_time = Time.get_ticks_msec()
+	birth_time = Time.get_ticks_msec() * Engine.time_scale
 	
 	var duplicated_actions : Array[UtilityAction] = []
 	for action in actions:

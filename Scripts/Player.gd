@@ -22,14 +22,18 @@ func _process(delta):
 	var direction : Vector3 = (global_basis * Vector3(horizontal_dir.x, 0.0, horizontal_dir.y)).normalized()
 	direction.y = vertical_dir
 	
+	var scaled_delta : float = delta
+	if Engine.time_scale != 0.0:
+		scaled_delta /= Engine.time_scale
+	
 	if direction:
 		velocity = direction * speed
 	else:
-		velocity.x = lerpf(velocity.x, 0.0, 15.0 * delta)
-		velocity.y = lerpf(velocity.y, 0.0, 15.0 * delta)
-		velocity.z = lerpf(velocity.z, 0.0, 15.0 * delta)
+		velocity.x = lerpf(velocity.x, 0.0, 15.0 * scaled_delta)
+		velocity.y = lerpf(velocity.y, 0.0, 15.0 * scaled_delta)
+		velocity.z = lerpf(velocity.z, 0.0, 15.0 * scaled_delta)
 	
-	global_position += velocity * delta
+	global_position += velocity * scaled_delta
 
 func _input(event):
 	if event is InputEventMouseMotion:

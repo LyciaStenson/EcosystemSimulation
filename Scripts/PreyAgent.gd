@@ -60,7 +60,8 @@ func _physics_process(delta : float):
 	scale = Vector3(1.0, 1.0, 1.0) * age_scale
 	if !at_water:
 		hydration -= dehydration_rate * delta
-	age_proportion = ((Time.get_ticks_msec() - birth_time) * 0.001) / lifetime
+	var scaled_time : float = Time.get_ticks_msec() * Engine.time_scale
+	age_proportion = ((scaled_time - birth_time) * 0.001) / lifetime
 	if hydration <= 0.0 || age_proportion >= 1.0:
 		ecosystem_manager.prey_death()
 		queue_free()
@@ -81,8 +82,7 @@ func _physics_process(delta : float):
 	world_context.data["offspring_num"] = offspring_num
 	world_context.data["mate_in_sight"] = get_mate_in_sight()
 	world_context.data["with_mate"] = with_mate
-	world_context.data["time_since_mating"] = (Time.get_ticks_msec() - last_mate_time) * 0.001
-	#print("time_since_mating: ", (Time.get_ticks_msec() - last_mate_time) * 0.001)
+	world_context.data["time_since_mating"] = (scaled_time - last_mate_time) * 0.001
 	
 	best_action = get_best_action(world_context)
 	
@@ -141,7 +141,7 @@ func go_to_mate_end():
 
 func mate(delta : float):
 	wants_to_mate = true
-	last_mate_time = Time.get_ticks_msec()
+	last_mate_time = Time.get_ticks_msec() * Engine.time_scale
 	offspring_num += 1
 	ecosystem_manager.spawn_prey(global_position)
 
