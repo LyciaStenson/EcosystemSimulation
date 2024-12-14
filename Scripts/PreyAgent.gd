@@ -30,6 +30,7 @@ var offspring_num : int = 0
 
 @onready var water_sensor : UtilitySensor = $WaterSensor
 @onready var prey_sensor : UtilitySensor = $PreySensor
+@onready var predator_sensor : UtilitySensor = $PredatorSensor
 
 @export_range(1.0, 10000.0, 1.0) var lifetime : float = 1.0
 
@@ -37,14 +38,16 @@ func _ready():
 	super()
 	
 	world_context.data = {
+		"hydration": hydration,
+		"water_known": false,
+		"at_water": false,
+		"predator_in_sight": false,
+		"predator_dist_sqrd": 0.0,
 		"age": 0.0,
 		"offspring_num": 0,
 		"mate_in_sight": false,
 		"with_mate": false,
-		"time_since_mating": 0.0,
-		"hydration": hydration,
-		"water_known": false,
-		"at_water": false,
+		"time_since_mating": 0.0
 	}
 	
 	water_sensor.target_entered.connect(water_found)
@@ -67,14 +70,19 @@ func _physics_process(delta : float):
 	lifetime_bar.set_value(age_proportion)
 	lifetime_bar.set_parent_scale(age_scale)
 	
+	if !predator_sensor.targets.is_empty():
+		world_context.data["predator_dist_sqrd"] = global_position.distance_squared_to(predator_sensor.get_nearest().global_position)
+	
+	world_context.data["hydration"] = hydration
+	world_context.data["water_known"] = !known_waters.is_empty()
+	world_context.data["at_water"] = at_water
+	world_context.data["predator_in_sight"] = !predator_sensor.targets.is_empty()
 	world_context.data["age"] = age_proportion
 	world_context.data["offspring_num"] = offspring_num
 	world_context.data["mate_in_sight"] = get_mate_in_sight()
 	world_context.data["with_mate"] = with_mate
 	world_context.data["time_since_mating"] = (Time.get_ticks_msec() - last_mate_time) * 0.001
-	world_context.data["hydration"] = hydration
-	world_context.data["water_known"] = !known_waters.is_empty()
-	world_context.data["at_water"] = at_water
+	#print("time_since_mating: ", (Time.get_ticks_msec() - last_mate_time) * 0.001)
 	
 	best_action = get_best_action(world_context)
 	
@@ -84,17 +92,18 @@ func _physics_process(delta : float):
 	if has_method(best_action.name):
 		call(best_action.name, delta)
 		current_action_label.text = best_action.name
+	#print(best_action.name)
 	
 	previous_action = best_action
 	
 	super(delta)
 
+# Genetic mutations are simulated by applying a multiplication ranging from 0.85 to 1.15 to the bias of each consideration
 func mutate():
-	#print("MUTATE")
 	for action in actions:
 		for consideration in action.considerations:
 			if consideration is BiasableConsideration:
-				var bias_multiplier : float = randf_range(0.95, 1.05)
+				var bias_multiplier : float = randf_range(0.85, 1.15)
 				consideration.bias *= bias_multiplier
 
 func wander(delta : float):
@@ -104,7 +113,10 @@ func wander(delta : float):
 		nav_agent.target_position = Vector3(randf_range(-24.0, 24.0), 0.0, randf_range(-24.0, 24.0))
 
 func flee(_delta : float):
-	pass
+	print("FLEE")
+	var nearest_predator : Node3D = predator_sensor.get_nearest()
+	var predator_direction : Vector3 = global_position.direction_to(nearest_predator.global_position)
+	nav_agent.target_position = global_position - predator_direction * 100.0
 
 func find_water(delta : float):
 	wander(delta)

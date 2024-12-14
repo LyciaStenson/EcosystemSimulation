@@ -50,9 +50,8 @@ tonemap_mode = 2
 [node name="Main" type="Node3D" groups=["Predator"]]
 
 [node name="EcosystemManager" parent="." node_paths=PackedStringArray("prey_num_label") instance=ExtResource("1_inw6k")]
-predator_num = 5
 predator_scene = ExtResource("2_ip68y")
-prey_num = 15
+prey_num = 1
 prey_scene = ExtResource("3_ufxvl")
 water_num = 10
 tree_num = 250

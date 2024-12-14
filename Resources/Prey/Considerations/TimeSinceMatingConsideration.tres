@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" path="res://Scripts/Utility/Considerations/CurveConsideration.gd" id="1_mbpy6"]
 
-[sub_resource type="Curve" id="Curve_mwy46"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_mu01x"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [resource]
 script = ExtResource("1_mbpy6")
-curve = SubResource("Curve_mwy46")
+curve = SubResource("Curve_mu01x")
+value_multiplier = 0.05
 context_key = "time_since_mating"
 bias = 1.0

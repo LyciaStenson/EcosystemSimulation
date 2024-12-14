@@ -1,7 +1,10 @@
-[gd_resource type="Resource" script_class="UtilityAction" load_steps=2 format=3 uid="uid://b6ngliux8mqo8"]
+[gd_resource type="Resource" script_class="UtilityAction" load_steps=4 format=3 uid="uid://b6ngliux8mqo8"]
 
+[ext_resource type="Resource" uid="uid://d205yvnn1efv" path="res://Resources/Prey/Considerations/PredatorInSightConsideration.tres" id="1_jv5tj"]
 [ext_resource type="Script" path="res://Scripts/Utility/UtilityAction.gd" id="1_po2gf"]
+[ext_resource type="Resource" uid="uid://duics82ybe0e5" path="res://Resources/Prey/Considerations/PredatorDistanceConsideration.tres" id="2_n3vxw"]
 
 [resource]
 script = ExtResource("1_po2gf")
 name = "flee"
+considerations = Array[Resource("res://Scripts/Utility/Considerations/UtilityConsideration.gd")]([ExtResource("1_jv5tj"), ExtResource("2_n3vxw")])

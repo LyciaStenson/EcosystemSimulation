@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ceyg4khiolqd2"]
+[gd_scene load_steps=23 format=3 uid="uid://ceyg4khiolqd2"]
 
 [ext_resource type="Script" path="res://Scripts/PreyAgent.gd" id="1_ddr70"]
 [ext_resource type="Resource" uid="uid://d1dwnp0cfqtmf" path="res://Resources/Prey/Actions/WanderAction.tres" id="2_v5o67"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://cgpvgs2rr1n2x" path="res://Resources/Prey/Actions/GoToWaterAction.tres" id="4_8c70q"]
 [ext_resource type="Script" path="res://Scripts/Utility/UtilitySensor.gd" id="4_p5s17"]
 [ext_resource type="Resource" uid="uid://c827ahwboam6s" path="res://Resources/Prey/Actions/DrinkAction.tres" id="5_jvqdv"]
+[ext_resource type="Resource" uid="uid://b6ngliux8mqo8" path="res://Resources/Prey/Actions/FleeAction.tres" id="6_5e0yp"]
 [ext_resource type="Script" path="res://Scenes/Bar.gd" id="6_e4csd"]
 [ext_resource type="Resource" uid="uid://cokxij5lla4fi" path="res://Resources/Prey/Actions/FindMateAction.tres" id="6_hqixi"]
 [ext_resource type="Resource" uid="uid://dqgluc08a1wbj" path="res://Resources/Prey/Actions/GoToMateAction.tres" id="7_yalf3"]
@@ -51,15 +52,19 @@ radius = 0.25
 height = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_atyq5"]
-radius = 5.0
+radius = 7.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_hexum"]
-radius = 5.0
+radius = 7.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2gond"]
+radius = 7.0
 
 [node name="Prey" type="CharacterBody3D" groups=["prey"]]
 script = ExtResource("1_ddr70")
 lifetime = 120.0
-actions = Array[Resource("res://Scripts/Utility/UtilityAction.gd")]([ExtResource("2_v5o67"), ExtResource("3_dni5w"), ExtResource("4_8c70q"), ExtResource("5_jvqdv"), ExtResource("6_hqixi"), ExtResource("7_yalf3"), ExtResource("8_ejdj0")])
+actions = Array[Resource("res://Scripts/Utility/UtilityAction.gd")]([ExtResource("2_v5o67"), ExtResource("3_dni5w"), ExtResource("4_8c70q"), ExtResource("5_jvqdv"), ExtResource("6_5e0yp"), ExtResource("6_hqixi"), ExtResource("7_yalf3"), ExtResource("8_ejdj0")])
+speed = 1.5
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -103,6 +108,13 @@ ignore_parent = true
 
 [node name="CollisionShape" type="CollisionShape3D" parent="PreySensor"]
 shape = SubResource("SphereShape3D_hexum")
+
+[node name="PredatorSensor" type="Area3D" parent="."]
+script = ExtResource("4_p5s17")
+target_group = "predator"
+
+[node name="CollisionShape" type="CollisionShape3D" parent="PredatorSensor"]
+shape = SubResource("SphereShape3D_2gond")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
 debug_enabled = true

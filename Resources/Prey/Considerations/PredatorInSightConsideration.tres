@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BooleanConsideration" load_steps=2 format=3 uid="uid://d205yvnn1efv"]
+
+[ext_resource type="Script" path="res://Scripts/Utility/Considerations/BooleanConsideration.gd" id="1_kh3df"]
+
+[resource]
+script = ExtResource("1_kh3df")
+context_key = "predator_in_sight"
+useful_when = 1
