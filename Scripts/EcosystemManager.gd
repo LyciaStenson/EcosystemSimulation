@@ -49,23 +49,25 @@ func generate_nav():
 
 func spawn_agents():
 	for i in predator_num:
-		var instantiated_scene := predator_scene.instantiate()
+		var instantiated_scene : PredatorAgent = predator_scene.instantiate()
 		var position_index : int = randi_range(0, low_positions.size() - 1)
 		instantiated_scene.position = low_positions[position_index]
 		low_positions.remove_at(position_index)
 		add_child(instantiated_scene)
 	
 	for i in prey_num:
-		var instantiated_scene := prey_scene.instantiate()
+		var prey : PreyAgent = prey_scene.instantiate()
 		var position_index : int = randi_range(0, low_positions.size() - 1)
-		instantiated_scene.position = low_positions[position_index]
+		prey.position = low_positions[position_index]
+		prey.mutate()
+		add_child(prey)
 		low_positions.remove_at(position_index)
-		add_child(instantiated_scene)
 
 func spawn_prey(pos : Vector3) -> void:
-	var instantiated_scene := prey_scene.instantiate()
-	instantiated_scene.position = pos
-	add_child(instantiated_scene)
+	var prey : PreyAgent = prey_scene.instantiate()
+	prey.position = pos
+	prey.mutate()
+	add_child(prey)
 	prey_num += 1
 	prey_num_label.text = str(prey_num) + " Prey"
 

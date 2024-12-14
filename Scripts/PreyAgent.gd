@@ -89,6 +89,14 @@ func _physics_process(delta : float):
 	
 	super(delta)
 
+func mutate():
+	#print("MUTATE")
+	for action in actions:
+		for consideration in action.considerations:
+			if consideration is BiasableConsideration:
+				var bias_multiplier : float = randf_range(0.95, 1.05)
+				consideration.bias *= bias_multiplier
+
 func wander(delta : float):
 	wander_timer += delta
 	if wander_timer > wander_time || nav_agent.is_navigation_finished():
