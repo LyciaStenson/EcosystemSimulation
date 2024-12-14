@@ -1,4 +1,5 @@
 extends NavigationRegion3D
+class_name EcosystemManager
 
 @export_category("Predator")
 @export var predator_num : int
@@ -56,6 +57,11 @@ func spawn_agents():
 		instantiated_scene.position = low_positions[position_index]
 		low_positions.remove_at(position_index)
 		add_child(instantiated_scene)
+
+func spawn_prey(pos : Vector3) -> void:
+	var instantiated_scene := prey_scene.instantiate()
+	instantiated_scene.position = pos
+	add_child(instantiated_scene)
 
 func generate_spawn_positions():
 	for x in range(-240, 240):

@@ -15,6 +15,8 @@ var previous_action : UtilityAction
 
 var direction : Vector3
 
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
 func _ready():
 	birth_time = Time.get_ticks_msec()
 	
@@ -30,11 +32,14 @@ func enable_physics_process():
 	await get_tree().physics_frame
 	set_physics_process(true)
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if nav_agent.is_navigation_finished():
 		direction = Vector3()
 	
 	direction = global_position.direction_to(nav_agent.get_next_path_position())
+	
+	if !is_on_floor():
+		velocity.y -= gravity * delta
 	
 	if direction:
 		velocity.x = direction.x * speed

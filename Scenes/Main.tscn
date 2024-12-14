@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dn5sjdmainloi"]
+[gd_scene load_steps=17 format=3 uid="uid://dn5sjdmainloi"]
 
 [ext_resource type="PackedScene" uid="uid://g7l7d0cxn440" path="res://Scenes/EcosystemManager.tscn" id="1_inw6k"]
 [ext_resource type="PackedScene" uid="uid://1n6rp3pfmw1q" path="res://Scenes/Player.tscn" id="2_3ohw1"]
@@ -30,6 +30,9 @@ albedo_color = Color(0.26575, 0.521477, 0.30486, 1)
 material = SubResource("StandardMaterial3D_k24k5")
 size = Vector3(50, 0.5, 50)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_uflps"]
+size = Vector3(50, 0.5, 50)
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vk5pe"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_bottom_color = Color(0.279233, 0.543181, 0.319772, 1)
@@ -49,7 +52,7 @@ tonemap_mode = 2
 [node name="EcosystemManager" parent="." instance=ExtResource("1_inw6k")]
 predator_num = 5
 predator_scene = ExtResource("2_ip68y")
-prey_num = 35
+prey_num = 10
 prey_scene = ExtResource("3_ufxvl")
 water_num = 10
 tree_num = 250
@@ -57,11 +60,14 @@ water_scene = ExtResource("4_gtkrg")
 tree_mesh = SubResource("CylinderMesh_5jufl")
 leaves_mesh = SubResource("SphereMesh_7is5k")
 
-[node name="Ground" type="Node3D" parent="EcosystemManager"]
+[node name="Ground" type="StaticBody3D" parent="EcosystemManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 
 [node name="MeshInstance" type="MeshInstance3D" parent="EcosystemManager/Ground"]
 mesh = SubResource("BoxMesh_y10c4")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="EcosystemManager/Ground"]
+shape = SubResource("BoxShape3D_uflps")
 
 [node name="Player" parent="." instance=ExtResource("2_3ohw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 30)

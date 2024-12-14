@@ -3,6 +3,10 @@ class_name UtilitySensor
 
 @export var target_group : String
 
+@export var ignore_parent : bool
+
+@onready var parent : Node3D = get_parent()
+
 var targets : Array[Node3D]
 
 signal target_entered(body : Node3D)
@@ -25,11 +29,11 @@ func get_nearest() -> Node3D:
 	return nearest_target
 
 func on_body_entered(body : Node3D):
-	if body.is_in_group(target_group):
+	if body != parent && body.is_in_group(target_group):
 		target_entered.emit(body)
 		targets.append(body)
 
 func on_body_exited(body : Node3D):
-	if targets.has(body):
+	if body != parent && targets.has(body):
 		target_exited.emit(body)
 		targets.erase(body)
