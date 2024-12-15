@@ -1,7 +1,9 @@
 extends UtilityAgent
 class_name PreyAgent
 
+var age_timer : float = 0.0
 var age_proportion : float = 0.0 # age as a proportion of lifetime
+@export_range(1.0, 10000.0, 1.0) var lifetime : float = 1.0
 
 var wander_direction : Vector3
 var wander_timer : float = 15.0
@@ -19,7 +21,7 @@ var drink_rate : float = 0.05
 
 var wants_to_mate : bool = false
 var with_mate : bool = false
-var last_mate_time : float = 0.0
+var time_since_mating : float = 0.0
 var offspring_num : int = 0
 
 @onready var ecosystem_manager : EcosystemManager = get_parent()
@@ -31,8 +33,6 @@ var offspring_num : int = 0
 @onready var water_sensor : UtilitySensor = $WaterSensor
 @onready var prey_sensor : UtilitySensor = $PreySensor
 @onready var predator_sensor : UtilitySensor = $PredatorSensor
-
-@export_range(1.0, 10000.0, 1.0) var lifetime : float = 1.0
 
 func _ready():
 	super()
@@ -56,12 +56,14 @@ func water_found(water : Node3D):
 	known_waters.append(water.global_position)
 
 func _physics_process(delta : float):
+	age_timer += delta
+	age_proportion = age_timer / lifetime
 	var age_scale : float = clampf(age_proportion * 5.0, 0.65, 1.0)
 	scale = Vector3(1.0, 1.0, 1.0) * age_scale
 	if !at_water:
 		hydration -= dehydration_rate * delta
-	var scaled_time : float = Time.get_ticks_msec() * Engine.time_scale
-	age_proportion = ((scaled_time - birth_time) * 0.001) / lifetime
+	#if hydration <= 0.0:
+	#if age_proportion >= 1.0:
 	if hydration <= 0.0 || age_proportion >= 1.0:
 		ecosystem_manager.prey_death()
 		queue_free()
@@ -70,6 +72,8 @@ func _physics_process(delta : float):
 	hydration_bar.set_parent_scale(age_scale)
 	lifetime_bar.set_value(age_proportion)
 	lifetime_bar.set_parent_scale(age_scale)
+	
+	time_since_mating += delta
 	
 	if !predator_sensor.targets.is_empty():
 		world_context.data["predator_dist_sqrd"] = global_position.distance_squared_to(predator_sensor.get_nearest().global_position)
@@ -82,7 +86,7 @@ func _physics_process(delta : float):
 	world_context.data["offspring_num"] = offspring_num
 	world_context.data["mate_in_sight"] = get_mate_in_sight()
 	world_context.data["with_mate"] = with_mate
-	world_context.data["time_since_mating"] = (scaled_time - last_mate_time) * 0.001
+	world_context.data["time_since_mating"] = time_since_mating
 	
 	best_action = get_best_action(world_context)
 	
@@ -122,6 +126,7 @@ func find_water(delta : float):
 	wander(delta)
 
 func find_mate(delta : float):
+	print("FIND MATE")
 	wants_to_mate = true
 	wander(delta)
 
@@ -141,7 +146,7 @@ func go_to_mate_end():
 
 func mate(delta : float):
 	wants_to_mate = true
-	last_mate_time = Time.get_ticks_msec() * Engine.time_scale
+	time_since_mating = 0.0
 	offspring_num += 1
 	ecosystem_manager.spawn_prey(global_position)
 

@@ -3,8 +3,6 @@ class_name UtilityAgent
 
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent
 
-var birth_time : float
-
 var world_context : UtilityWorldContext = UtilityWorldContext.new()
 
 @export var actions : Array[UtilityAction]
@@ -18,8 +16,6 @@ var direction : Vector3
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
-	birth_time = Time.get_ticks_msec() * Engine.time_scale
-	
 	var duplicated_actions : Array[UtilityAction] = []
 	for action in actions:
 		duplicated_actions.append(action.get_duplicate())

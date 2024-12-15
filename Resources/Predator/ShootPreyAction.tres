@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GoapAction" load_steps=2 format=3 uid="uid://bw3smsn4eyc4f"]
+
+[ext_resource type="Script" path="res://Scripts/Goap/GoapAction.gd" id="1_wg243"]
+
+[resource]
+script = ExtResource("1_wg243")
+preconditions = Array[Resource("res://Scripts/Goap/GoapStateCondition.gd")]([])
+effects = Array[Resource("res://Scripts/Goap/GoapStateCondition.gd")]([])

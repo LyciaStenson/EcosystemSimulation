@@ -14,6 +14,16 @@ func _process(delta):
 	
 	var vertical_dir : float = 0.0
 	
+	if (Input.is_action_just_pressed("IncreaseTimeScale")):
+		var new_time_scale : float = Engine.time_scale
+		new_time_scale += 1.0
+		new_time_scale = clampf(new_time_scale, 1.0, 35.0)
+		Engine.time_scale = new_time_scale
+	if (Input.is_action_just_pressed("DecreaseTimeScale")):
+		var new_time_scale : float = Engine.time_scale
+		new_time_scale -= 1.0
+		new_time_scale = clampf(new_time_scale, 1.0, 35.0)
+		Engine.time_scale = new_time_scale
 	if (Input.is_action_pressed("MoveUp")):
 		vertical_dir += 1.0
 	if (Input.is_action_pressed("MoveDown")):

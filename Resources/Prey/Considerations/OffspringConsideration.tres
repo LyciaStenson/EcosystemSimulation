@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://Scripts/Utility/Considerations/CurveConsideration.gd" id="1_grce1"]
 
 [sub_resource type="Curve" id="Curve_ps6d7"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -10.0, 0.0, 0, 0]
 point_count = 3
 
 [resource]
 script = ExtResource("1_grce1")
 curve = SubResource("Curve_ps6d7")
-value_multiplier = 1.0
+value_multiplier = 10.0
 context_key = "offspring_num"
 bias = 1.0

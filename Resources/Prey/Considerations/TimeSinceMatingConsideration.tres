@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Utility/Considerations/CurveConsideration.gd" id="1_mbpy6"]
 
 [sub_resource type="Curve" id="Curve_mu01x"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [resource]

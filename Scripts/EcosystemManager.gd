@@ -33,7 +33,6 @@ var high_positions : Array[Vector3] = []
 var low_positions : Array[Vector3] = []
 
 func _ready():
-	Engine.time_scale = 1.0
 	prey_num_label.text = str(prey_num) + " Prey"
 	fast_noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	fast_noise.seed = randi()
@@ -97,7 +96,7 @@ func generate_water():
 		var new_low_positions : Array[Vector3] = []
 		for pos in low_positions:
 			var dist_sqrd : float = (pos - instantiated_scene.global_position).length_squared()
-			var radius : float = 2.0
+			var radius : float = 3.0
 			if dist_sqrd > (radius * radius) + 0.7:
 				new_low_positions.append(pos)
 		low_positions = new_low_positions

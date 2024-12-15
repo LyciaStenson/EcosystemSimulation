@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="UtilityAction" load_steps=7 format=3 uid="uid://dqgluc08a1wbj"]
+[gd_resource type="Resource" script_class="UtilityAction" load_steps=6 format=3 uid="uid://dqgluc08a1wbj"]
 
 [ext_resource type="Script" path="res://Scripts/Utility/UtilityAction.gd" id="1_67vl7"]
 [ext_resource type="Resource" uid="uid://cnv1g1t4houf5" path="res://Resources/Prey/Considerations/AgeConsideration.tres" id="1_tkrj3"]
-[ext_resource type="Resource" uid="uid://cjwddwcw0ayj7" path="res://Resources/Prey/Considerations/OffspringConsideration.tres" id="2_h8w6m"]
 [ext_resource type="Resource" uid="uid://64mdscodh0qu" path="res://Resources/Prey/Considerations/TimeSinceMatingConsideration.tres" id="3_do1ae"]
 [ext_resource type="Resource" uid="uid://b625lgpd6fpl8" path="res://Resources/Prey/Considerations/MateInSightConsideration.tres" id="3_fj0rx"]
 [ext_resource type="Resource" uid="uid://c4jhnks1pw3do" path="res://Resources/Prey/Considerations/NotWithMateConsideration.tres" id="4_ju2n5"]
@@ -10,4 +9,4 @@
 [resource]
 script = ExtResource("1_67vl7")
 name = "go_to_mate"
-considerations = Array[Resource("res://Scripts/Utility/Considerations/UtilityConsideration.gd")]([ExtResource("1_tkrj3"), ExtResource("2_h8w6m"), ExtResource("3_do1ae"), ExtResource("3_fj0rx"), ExtResource("4_ju2n5")])
+considerations = Array[Resource("res://Scripts/Utility/Considerations/UtilityConsideration.gd")]([ExtResource("1_tkrj3"), ExtResource("3_do1ae"), ExtResource("3_fj0rx"), ExtResource("4_ju2n5")])

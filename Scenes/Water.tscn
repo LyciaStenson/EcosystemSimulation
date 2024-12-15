@@ -5,12 +5,13 @@ albedo_color = Color(0.238607, 0.610443, 0.649308, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_6uswt"]
 material = SubResource("StandardMaterial3D_mmv24")
-top_radius = 2.0
-bottom_radius = 2.0
+top_radius = 3.0
+bottom_radius = 3.0
 height = 0.1
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tu36m"]
-radius = 2.0
+height = 3.0
+radius = 3.0
 
 [node name="Water" type="StaticBody3D" groups=["water"]]
 
